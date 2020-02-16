@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "twita-dev": {
+      "hosting": {
+        "front-twita": [
+          "twita-dev"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "dev": "twita-dev"
+  }
+}

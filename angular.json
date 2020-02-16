@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "front-twita": {
@@ -121,8 +121,16 @@
               "devServerTarget": "front-twita:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
-  "defaultProject": "front-twita"
+    }
+  },
+  "defaultProject": "front-twita",
+  "cli": {
+    "analytics": "0726c96b-f974-4027-b435-773e87749900"
+  }
 }

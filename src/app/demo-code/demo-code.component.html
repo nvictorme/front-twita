@@ -1,0 +1,33 @@
+<div style="max-width: 800px; margin: auto;">
+  <div>
+    <app-demo-item *ngIf="post" [post]="post.data" [user]="post.user"></app-demo-item>
+  </div>
+  <div style="margin: auto;">
+    <nb-list nbInfiniteList [threshold]="500">
+      <nb-list-item *ngFor="let c of comments" style="margin: 0; max-width: 600px;">
+        <nb-card style="margin: 0;">
+          <nb-card-header>{{c.email}}</nb-card-header>
+          <nb-card-body>
+            {{c.body}}
+          </nb-card-body>
+          <nb-card-footer>
+            <nb-actions fullWidth>
+              <nb-action>
+                {{getMeta()}}
+              </nb-action>
+              <nb-action>
+                <nb-icon icon="close-circle-outline" status="basic"></nb-icon>
+              </nb-action>
+              <nb-action>
+                <nb-icon icon="award-outline" status="basic"></nb-icon>
+              </nb-action>
+              <!--              <nb-action>-->
+              <!--                <nb-icon icon="message-circle-outline" status="basic"></nb-icon>-->
+              <!--              </nb-action>-->
+            </nb-actions>
+          </nb-card-footer>
+        </nb-card>
+      </nb-list-item>
+    </nb-list>
+  </div>
+</div>

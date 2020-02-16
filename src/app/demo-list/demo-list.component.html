@@ -1,0 +1,13 @@
+<div style="max-width: 600px; margin: auto;">
+  <nb-card *ngIf="loading" [nbSpinner]="loading" nbSpinnerMessage="Loading..." nbSpinnerSize="giant">
+    <br><br>
+    <br><br>
+  </nb-card>
+  <nb-list *ngIf="posts.length && users" nbInfiniteList [threshold]="100" listenWindowScroll>
+    <nb-list-item *ngFor="let post of posts" style="padding: 0; max-width: 600px;">
+      <app-demo-item [post]="post" [user]="users.get(post.userId)"
+                     style="border-radius: 0; width: 100%;">
+      </app-demo-item>
+    </nb-list-item>
+  </nb-list>
+</div>

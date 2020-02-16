@@ -3,7 +3,18 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebaseConfig: {
+    apiKey: 'AIzaSyACWNht9ZmZIa0LhWf0hmgMtENnvt8FuCk',
+    authDomain: 'twita-dev.firebaseapp.com',
+    databaseURL: 'https://twita-dev.firebaseio.com',
+    projectId: 'twita-dev',
+    storageBucket: 'twita-dev.appspot.com',
+    messagingSenderId: '36636702',
+    appId: '1:36636702:web:1f7fb36f9111d719acc60f',
+    measurementId: 'G-1LWSDK596J'
+  },
+  placeholderURL: 'https://jsonplaceholder.typicode.com'
 };
 
 /*
