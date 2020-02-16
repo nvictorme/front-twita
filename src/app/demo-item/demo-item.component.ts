@@ -12,7 +12,7 @@ export class DemoItemComponent implements OnInit {
   @Input() post: any;
   @Input() user: any;
   isFavorite = false;
-  isRetwita = false;
+  isShared = false;
   cCount: number;
 
   constructor(private phs: PlaceholderService,
@@ -29,7 +29,7 @@ export class DemoItemComponent implements OnInit {
   }
 
   toggleRetwita(evt: any) {
-    this.isRetwita = !this.isRetwita;
+    this.isShared = !this.isShared;
   }
 
   commentCount() {

@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {HeaderComponent} from './header/header.component';
 import {
   NbButtonModule,
-  NbCardModule, NbIconModule,
+  NbCardModule, NbContextMenuModule, NbIconModule,
   NbInputModule,
   NbLayoutModule,
   NbListModule,
@@ -40,7 +40,8 @@ import { FabReplyComponent } from './fab-reply/fab-reply.component';
     NbInputModule,
     NbButtonModule,
     NbIconModule,
-    NbUserModule
+    NbUserModule,
+    NbContextMenuModule
   ],
   exports: [
     HeaderComponent,

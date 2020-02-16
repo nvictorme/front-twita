@@ -9,6 +9,7 @@ import TwitterAuthProvider = firebase.auth.TwitterAuthProvider;
 import FacebookAuthProvider = firebase.auth.FacebookAuthProvider;
 import {Router} from '@angular/router';
 import {UserData, UserRoles} from '../models/interfaces';
+import {AngularFirestore, DocumentSnapshot} from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,7 @@ export class AuthService {
   private user: Observable<firebase.User | null>;
 
   constructor(private afAuth: AngularFireAuth,
+              private db: AngularFirestore,
               private router: Router) {
     this.user = this.afAuth.user;
   }
@@ -66,23 +68,27 @@ export class AuthService {
   }
 
   updateUser() {
-    this.user.subscribe(cUser => {
+    this.user.subscribe(async cUser => {
       const {uid, displayName, photoURL, email, phoneNumber} = cUser;
-      const roles: UserRoles = this.initRoles();
-      const userData: UserData = {
+      let userData: UserData = {
         bio: '',
         catchPhrase: '',
         country: '',
-        displayName,
-        email,
+        displayName: displayName ?? '',
+        email: email ?? '',
         firstName: '',
         lastName: '',
-        phoneNumber,
-        photoURL,
-        roles,
+        phoneNumber: phoneNumber ?? '',
+        photoURL: photoURL ?? '/assets/icon/apple-icon-152x152.png',
+        roles: this.initRoles(),
         uid
       };
-      console.log(userData);
+      // @ts-ignore
+      const userSnap: DocumentSnapshot<any> = await this.db.collection('users').doc(userData.uid).get();
+      if (userSnap.exists) {
+        userData = {...userData, ...userSnap.data()};
+      }
+      await this.db.collection('users').doc(userData.uid).set({...userData}, {merge: true});
       this.router.navigate(['demo-list']);
     });
   }

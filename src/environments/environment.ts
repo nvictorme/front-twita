@@ -14,7 +14,33 @@ export const environment = {
     appId: '1:36636702:web:1f7fb36f9111d719acc60f',
     measurementId: 'G-1LWSDK596J'
   },
-  placeholderURL: 'https://jsonplaceholder.typicode.com'
+  placeholderURL: 'https://jsonplaceholder.typicode.com',
+  twitaOptions: [
+    {
+      title: 'Text',
+      icon: 'file-text-outline'
+    },
+    {
+      title: 'Code',
+      icon: 'code-outline'
+    },
+    {
+      title: 'Image',
+      icon: 'image-outline'
+    },
+    {
+      title: 'File',
+      icon: 'file-add-outline'
+    },
+    {
+      title: 'Video',
+      icon: 'video-outline'
+    },
+    {
+      title: 'Audio',
+      icon: 'music-outline'
+    }
+  ]
 };
 
 /*

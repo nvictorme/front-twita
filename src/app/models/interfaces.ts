@@ -1,5 +1,6 @@
 import * as firebase from 'firebase';
 import Timestamp = firebase.firestore.Timestamp;
+import {PostTypes} from './enumerations';
 
 export interface UserRoles {
   admin: boolean;
@@ -21,32 +22,26 @@ export interface UserData {
   uid?: string;
 }
 
-export interface MediaMeta {
+export interface Media {
   fileName?: string;
   url?: string;
-}
-
-export interface PostMedia {
-  audio?: MediaMeta;
-  image?: MediaMeta;
-  link?: MediaMeta;
-  video?: MediaMeta;
-  file?: MediaMeta;
+  code?: string;
 }
 
 export interface PostMeta {
   comments?: number;
-  reposts?: number;
+  shares?: number;
   stars?: number;
 }
 
 export interface Post {
   authorId: string;
-  content: string;
   createdAt: Timestamp;
-  media: PostMedia;
-  meta?: PostMeta;
+  description: string;
+  media?: Media;
+  meta: PostMeta;
   title: string;
   tags?: string[];
+  type: PostTypes;
 }
 

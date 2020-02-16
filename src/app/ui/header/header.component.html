@@ -1,16 +1,10 @@
-<div class="header-actions" *ngIf="user | async">
+<div class="header-actions" *ngIf="(user | async)">
   <div>
     <nb-toggle status="warning" [checked]="barStatus['favbar']"
                (checkedChange)="toggleBar($event, 'favbar')">
       Favorites
     </nb-toggle>
   </div>
-<!--  <div>-->
-  <!--    <nb-toggle status="info" [checked]="barStatus['menubar']"-->
-  <!--               (checkedChange)="toggleBar($event, 'menubar')">-->
-  <!--      Menu-->
-  <!--    </nb-toggle>-->
-  <!--  </div>-->
   <div (click)="toggleBar($event, 'menubar')" align="right">
     <nb-user size="medium" [name]="(user | async).displayName" [picture]="(user | async).photoURL"></nb-user>
   </div>
