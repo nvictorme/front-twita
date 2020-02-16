@@ -7,15 +7,16 @@ export interface UserRoles {
   editor: boolean;
 }
 
-export interface User {
+export interface UserData {
   bio?: string;
-  catchPhrase: string;
+  catchPhrase?: string;
   country?: string;
   displayName: string;
   email: string;
   firstName?: string;
   lastName?: string;
-  phone?: string;
+  phoneNumber?: string;
+  photoURL?: string;
   roles?: UserRoles;
   uid?: string;
 }

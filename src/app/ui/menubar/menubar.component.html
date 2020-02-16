@@ -2,8 +2,8 @@
   <nb-menu [items]="items"></nb-menu>
 </div>
 <br><br>
-<div>
-  <button *ngIf="user | async" nbButton outline status="danger" (click)="logOut()">
+<div align="right">
+  <button *ngIf="user | async" nbButton outline status="danger" (click)="logOut()" size="small">
     <nb-icon icon="unlock-outline" status="danger"></nb-icon>
     Logout
   </button>

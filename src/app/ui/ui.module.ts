@@ -9,7 +9,7 @@ import {
   NbListModule,
   NbMenuModule,
   NbSidebarModule,
-  NbToggleModule
+  NbToggleModule, NbUserModule
 } from '@nebular/theme';
 import {RouterModule} from '@angular/router';
 import {FavbarComponent} from './favbar/favbar.component';
@@ -39,7 +39,8 @@ import { FabReplyComponent } from './fab-reply/fab-reply.component';
     NbListModule,
     NbInputModule,
     NbButtonModule,
-    NbIconModule
+    NbIconModule,
+    NbUserModule
   ],
   exports: [
     HeaderComponent,

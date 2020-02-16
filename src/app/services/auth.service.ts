@@ -8,6 +8,7 @@ import GithubAuthProvider = firebase.auth.GithubAuthProvider;
 import TwitterAuthProvider = firebase.auth.TwitterAuthProvider;
 import FacebookAuthProvider = firebase.auth.FacebookAuthProvider;
 import {Router} from '@angular/router';
+import {UserData, UserRoles} from '../models/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -66,9 +67,32 @@ export class AuthService {
 
   updateUser() {
     this.user.subscribe(cUser => {
-      console.log(cUser);
+      const {uid, displayName, photoURL, email, phoneNumber} = cUser;
+      const roles: UserRoles = this.initRoles();
+      const userData: UserData = {
+        bio: '',
+        catchPhrase: '',
+        country: '',
+        displayName,
+        email,
+        firstName: '',
+        lastName: '',
+        phoneNumber,
+        photoURL,
+        roles,
+        uid
+      };
+      console.log(userData);
       this.router.navigate(['demo-list']);
     });
+  }
+
+  initRoles(): UserRoles {
+    return {
+      admin: false,
+      basic: true,
+      editor: false
+    };
   }
 
   logout() {
