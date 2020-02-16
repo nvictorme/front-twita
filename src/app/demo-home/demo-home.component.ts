@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AuthProviders} from '../models/enumerations';
+import {AuthService} from '../services/auth.service';
 
 @Component({
   selector: 'app-demo-home',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DemoHomeComponent implements OnInit {
 
-  constructor() { }
+  AuthProviders = AuthProviders;
+
+  constructor(private auth: AuthService) {
+  }
 
   ngOnInit(): void {
+  }
+
+  login(authProvider: AuthProviders) {
+    this.auth.login(authProvider);
   }
 
 }

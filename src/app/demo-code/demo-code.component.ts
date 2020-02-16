@@ -1,7 +1,7 @@
 import {AfterViewChecked, Component, OnInit} from '@angular/core';
 import {PlaceholderService} from '../services/placeholder.service';
 import * as moment from 'moment';
-declare var Prism: any;
+import * as Prism from 'prismjs';
 
 @Component({
   selector: 'app-demo-code',

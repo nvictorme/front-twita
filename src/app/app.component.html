@@ -1,38 +1,26 @@
 <nb-layout>
 
   <nb-layout-header fixed>
-  <!-- Insert header here -->
+    <!-- Insert header here -->
     <a routerLink="/"><img height="75" src="/assets/img/twita-header-logo.png" alt="TWITA"></a>
+    <app-header></app-header>
   </nb-layout-header>
 
-  <nb-sidebar tag="favbar" state="collapsed">
-    <nb-card>
-      <div style="align-items: stretch;">
-        <input [disabled]="!favs.length" type="text" nbInput fullWidth status="info" placeholder="Search favorites...">
-        <button nbButton status="success" size="tiny" (click)="toggleBar('favbar')">Toggle</button>
-      </div>
-    </nb-card>
-    <div *ngIf="!favs.length" align="center">
-      <b>You have no favorites yet</b>
-    </div>
-    <nb-list *ngIf="favs.length">
-      <nb-list-item *ngFor="let fav of favs">
-        {{fav.title}}
-      </nb-list-item>
-    </nb-list>
+  <nb-sidebar *ngIf="user | async" tag="favbar" state="collapsed" left fixed>
+    <app-favbar></app-favbar>
   </nb-sidebar>
 
   <nb-layout-column>
     <router-outlet></router-outlet>
   </nb-layout-column>
 
-  <nb-sidebar right tag="pushbar" state="collapsed">
-    <button nbButton outline status="danger">Logout</button>
+  <nb-sidebar *ngIf="user | async" tag="menubar" state="collapsed" right fixed>
+    <app-menubar></app-menubar>
   </nb-sidebar>
 
   <nb-layout-footer fixed>
-  <!-- Insert footer here -->
-     &copy;2020 twita.network
+    <!-- Insert footer here -->
+    <app-footer></app-footer>
   </nb-layout-footer>
 
 </nb-layout>

@@ -3,7 +3,7 @@
     <nb-user *ngIf="user" picture="/assets/icon/apple-icon-152x152.png" [name]="user.username"
              [title]="user.company.catchPhrase"></nb-user>
   </nb-card-header>
-  <nb-card-body>
+  <nb-card-body (click)="commentPost()">
     <b>{{post.title}}</b>
     <br>
     {{post.body}}

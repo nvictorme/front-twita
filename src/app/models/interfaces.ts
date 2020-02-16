@@ -30,6 +30,7 @@ export interface PostMedia {
   image?: MediaMeta;
   link?: MediaMeta;
   video?: MediaMeta;
+  file?: MediaMeta;
 }
 
 export interface PostMeta {

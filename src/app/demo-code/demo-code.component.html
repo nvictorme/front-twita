@@ -1,11 +1,11 @@
-<div style="max-width: 800px; margin: auto;">
-  <div>
+<div style="max-width: 800px; margin: auto; background: aliceblue;">
+  <section>
     <app-demo-item *ngIf="post" [post]="post.data" [user]="post.user"></app-demo-item>
-  </div>
-  <div style="margin: auto;">
+  </section>
+  <section style="margin: auto;">
     <nb-list nbInfiniteList [threshold]="500">
-      <nb-list-item *ngFor="let c of comments" style="margin: 0; max-width: 600px;">
-        <nb-card style="margin: 0;">
+      <nb-list-item *ngFor="let c of comments" style="margin: auto; max-width: 700px;">
+        <nb-card style="margin: auto;">
           <nb-card-header>{{c.email}}</nb-card-header>
           <nb-card-body>
             {{c.body}}
@@ -29,5 +29,6 @@
         </nb-card>
       </nb-list-item>
     </nb-list>
-  </div>
+  </section>
+  <app-fab-reply></app-fab-reply>
 </div>

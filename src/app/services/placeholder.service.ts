@@ -12,7 +12,6 @@ export class PlaceholderService {
   private usersListener = new Subject<Map<number, any>>();
   private favListener = new Subject<any[]>();
   private usersList: Map<number, any> = new Map<number, any>();
-  private currentPost: any;
   private favorites: any[] = [];
 
   constructor(private http: HttpClient) {
@@ -53,11 +52,11 @@ export class PlaceholderService {
   }
 
   getCurrentPost(): any {
-    return this.currentPost;
+    return JSON.parse(localStorage.getItem('currentPost'));
   }
 
   setCurrentPost(post: any): void {
-    this.currentPost = post;
+    localStorage.setItem('currentPost', JSON.stringify(post));
   }
 
   addFav(post: any) {

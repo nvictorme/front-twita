@@ -1,0 +1,10 @@
+<div>
+  <nb-menu [items]="items"></nb-menu>
+</div>
+<br><br>
+<div>
+  <button *ngIf="user | async" nbButton outline status="danger" (click)="logOut()">
+    <nb-icon icon="unlock-outline" status="danger"></nb-icon>
+    Logout
+  </button>
+</div>

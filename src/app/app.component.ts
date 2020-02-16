@@ -1,32 +1,21 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {PlaceholderService} from './services/placeholder.service';
-import {Subscription} from 'rxjs';
-import {NbSidebarService} from '@nebular/theme';
+import {Component, OnInit} from '@angular/core';
+import {Observable} from 'rxjs';
+import {User} from 'firebase';
+import {AuthService} from './services/auth.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, OnDestroy {
-  title = 'front-twita';
-  favSub: Subscription;
-  favs: any[] = [];
+export class AppComponent implements OnInit {
 
-  constructor(private phs: PlaceholderService,
-              private sbs: NbSidebarService) {
+  user: Observable<User | null>;
+
+  constructor(private auth: AuthService) {
   }
 
   ngOnInit(): void {
-    this.favSub = this.phs.getFavListener().subscribe((favs: any[]) => this.favs = favs);
+    this.user = this.auth.getUser();
   }
-
-  toggleBar(barTag: string) {
-    this.sbs.toggle(false, barTag);
-  }
-
-  ngOnDestroy(): void {
-    this.favSub.unsubscribe();
-  }
-
 }
