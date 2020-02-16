@@ -20,13 +20,15 @@ import {HttpClientModule} from '@angular/common/http';
 import { DemoItemComponent } from './demo-item/demo-item.component';
 import { DemoCodeComponent } from './demo-code/demo-code.component';
 import { DemoListComponent } from './demo-list/demo-list.component';
+import { DemoHomeComponent } from './demo-home/demo-home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DemoItemComponent,
     DemoCodeComponent,
-    DemoListComponent
+    DemoListComponent,
+    DemoHomeComponent
   ],
   imports: [
     BrowserModule,
