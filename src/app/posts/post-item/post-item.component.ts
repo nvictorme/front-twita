@@ -1,13 +1,13 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {PlaceholderService} from '../services/placeholder.service';
+import {PlaceholderService} from '../../services/placeholder.service';
 import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-demo-item',
-  templateUrl: './demo-item.component.html',
-  styleUrls: ['./demo-item.component.scss']
+  selector: 'app-post-item',
+  templateUrl: './post-item.component.html',
+  styleUrls: ['./post-item.component.scss']
 })
-export class DemoItemComponent implements OnInit {
+export class PostItemComponent implements OnInit {
 
   @Input() post: any;
   @Input() user: any;
@@ -28,7 +28,7 @@ export class DemoItemComponent implements OnInit {
     this.isFavorite ? this.phs.addFav(this.post) : this.phs.removeFav(this.post);
   }
 
-  toggleRetwita(evt: any) {
+  toggleShared(evt: any) {
     this.isShared = !this.isShared;
   }
 

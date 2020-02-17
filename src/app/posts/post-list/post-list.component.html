@@ -5,9 +5,9 @@
   </nb-card>
   <nb-list *ngIf="posts.length && users" nbInfiniteList [threshold]="100" listenWindowScroll>
     <nb-list-item *ngFor="let post of posts" style="padding: 0; max-width: 600px;">
-      <app-demo-item [post]="post" [user]="users.get(post.userId)"
+      <app-post-item [post]="post" [user]="users.get(post.userId)"
                      style="border-radius: 0; width: 100%;">
-      </app-demo-item>
+      </app-post-item>
     </nb-list-item>
   </nb-list>
   <app-fab-twita></app-fab-twita>

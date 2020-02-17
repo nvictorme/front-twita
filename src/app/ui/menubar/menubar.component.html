@@ -1,4 +1,13 @@
 <div>
+    <div>
+      <nb-toggle status="warning" [checked]="barStatus['favbar']"
+                 (checkedChange)="toggleBar($event, 'favbar')">
+        Show favorites
+      </nb-toggle>
+    </div>
+</div>
+<br>
+<div>
   <nb-menu [items]="items"></nb-menu>
 </div>
 <br><br>

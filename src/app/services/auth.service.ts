@@ -89,7 +89,7 @@ export class AuthService {
         userData = {...userData, ...userSnap.data()};
       }
       await this.db.collection('users').doc(userData.uid).set({...userData}, {merge: true});
-      this.router.navigate(['demo-list']);
+      this.router.navigate(['recent']);
     });
   }
 

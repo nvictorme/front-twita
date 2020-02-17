@@ -1,31 +1,46 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {Observable} from 'rxjs';
 import {User} from 'firebase';
-import {NbMenuItem} from '@nebular/theme';
+import {NbMenuItem, NbSidebarService} from '@nebular/theme';
 
 @Component({
   selector: 'app-menubar',
   templateUrl: './menubar.component.html',
   styleUrls: ['./menubar.component.scss']
 })
-export class MenubarComponent implements OnInit {
+export class MenubarComponent implements OnInit, OnDestroy {
 
-  user: Observable<User | null>;
+  user: Observable<User | null> = null;
+  barStatus: any = {
+    favbar: false,
+    menubar: false
+  };
   items: NbMenuItem[] = [
     {
-      title: 'feed',
-      link: '/demo-list',
+      title: 'Feed',
+      link: '/recent',
       icon: 'list-outline'
     },
     {
-      title: 'code',
+      title: 'Favorites',
+      link: '/demo-code',
+      icon: 'star-outline'
+    },
+    {
+      title: 'Code',
       link: '/demo-code',
       icon: 'code-outline'
+    },
+    {
+      title: 'Profile',
+      link: '/my-profile',
+      icon: 'person-outline'
     }
   ];
 
-  constructor(private auth: AuthService) {
+  constructor(private sbs: NbSidebarService,
+              private auth: AuthService) {
   }
 
   ngOnInit(): void {
@@ -34,6 +49,15 @@ export class MenubarComponent implements OnInit {
 
   logOut() {
     this.auth.logout();
+  }
+
+  toggleBar(evt: any, barTag: string) {
+    this.sbs.toggle(evt.checked, barTag);
+  }
+
+  ngOnDestroy(): void {
+    this.barStatus.favbar = false;
+    this.barStatus.menubar = false;
   }
 
 }

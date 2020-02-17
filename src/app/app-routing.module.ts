@@ -1,12 +1,13 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {DemoCodeComponent} from './demo-code/demo-code.component';
-import {DemoListComponent} from './demo-list/demo-list.component';
 import {DemoHomeComponent} from './demo-home/demo-home.component';
 
 import {AngularFireAuthGuard, hasCustomClaim, redirectLoggedInTo, redirectUnauthorizedTo} from '@angular/fire/auth-guard';
+import {MyProfileComponent} from './pages/my-profile/my-profile.component';
+import {PostListComponent} from './posts/post-list/post-list.component';
 
-const redirectLoggedInToFeed = () => redirectLoggedInTo(['demo-list']);
+const redirectLoggedInToFeed = () => redirectLoggedInTo(['recent']);
 const redirectUnauthorizedToHome = () => redirectUnauthorizedTo(['']);
 
 const routes: Routes = [
@@ -17,14 +18,20 @@ const routes: Routes = [
     data: {authGuardPipe: redirectLoggedInToFeed}
   },
   {
-    path: 'demo-list',
-    component: DemoListComponent,
+    path: 'recent',
+    component: PostListComponent,
     canActivate: [AngularFireAuthGuard],
     data: {authGuardPipe: redirectUnauthorizedToHome}
   },
   {
     path: 'demo-code',
     component: DemoCodeComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: {authGuardPipe: redirectUnauthorizedToHome}
+  },
+  {
+    path: 'my-profile',
+    component: MyProfileComponent,
     canActivate: [AngularFireAuthGuard],
     data: {authGuardPipe: redirectUnauthorizedToHome}
   }

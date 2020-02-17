@@ -10,7 +10,7 @@ import {AuthService} from './services/auth.service';
 })
 export class AppComponent implements OnInit {
 
-  user: Observable<User | null>;
+  user: Observable<User | null> = null;
 
   constructor(private auth: AuthService) {
   }

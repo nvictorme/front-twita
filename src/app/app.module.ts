@@ -16,9 +16,7 @@ import {
 } from '@nebular/theme';
 import {NbEvaIconsModule} from '@nebular/eva-icons';
 import {HttpClientModule} from '@angular/common/http';
-import {DemoItemComponent} from './demo-item/demo-item.component';
 import {DemoCodeComponent} from './demo-code/demo-code.component';
-import {DemoListComponent} from './demo-list/demo-list.component';
 import {DemoHomeComponent} from './demo-home/demo-home.component';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFireAuthGuard, AngularFireAuthGuardModule} from '@angular/fire/auth-guard';
@@ -29,13 +27,13 @@ import {AngularFirePerformanceModule} from '@angular/fire/performance';
 import {AngularFireMessagingModule} from '@angular/fire/messaging';
 import {PlaceholderService} from './services/placeholder.service';
 import {UiModule} from './ui/ui.module';
+import {PagesModule} from './pages/pages.module';
+import {PostsModule} from './posts/posts.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DemoItemComponent,
     DemoCodeComponent,
-    DemoListComponent,
     DemoHomeComponent
   ],
   imports: [
@@ -63,7 +61,9 @@ import {UiModule} from './ui/ui.module';
     NbIconModule,
     NbButtonModule,
     NbAccordionModule,
-    UiModule
+    UiModule,
+    PagesModule,
+    PostsModule
   ],
   providers: [
     AngularFireAuthGuard,
