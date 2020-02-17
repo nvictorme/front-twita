@@ -8,15 +8,14 @@ import GithubAuthProvider = firebase.auth.GithubAuthProvider;
 import TwitterAuthProvider = firebase.auth.TwitterAuthProvider;
 import FacebookAuthProvider = firebase.auth.FacebookAuthProvider;
 import {Router} from '@angular/router';
-import {UserData, UserRoles} from '../models/interfaces';
-import {AngularFirestore, DocumentSnapshot} from '@angular/fire/firestore';
+import {AngularFirestore} from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private user: Observable<firebase.User | null>;
+  private readonly user: Observable<firebase.User | null> = null;
 
   constructor(private afAuth: AngularFireAuth,
               private db: AngularFirestore,
@@ -33,72 +32,38 @@ export class AuthService {
       case AuthProviders.GOOGLE: {
         this.afAuth.auth.signInWithPopup(new GoogleAuthProvider())
           .then(authResult => {
-            this.updateUser();
+            this.router.navigate(['recent']);
           });
         break;
       }
       case AuthProviders.GITHUB: {
         this.afAuth.auth.signInWithPopup(new GithubAuthProvider())
           .then(authResult => {
-            this.updateUser();
+            this.router.navigate(['recent']);
           });
         break;
       }
       case AuthProviders.TWITTER: {
         this.afAuth.auth.signInWithPopup(new TwitterAuthProvider())
           .then(authResult => {
-            this.updateUser();
+            this.router.navigate(['recent']);
           });
         break;
       }
       case AuthProviders.FACEBOOK: {
         this.afAuth.auth.signInWithPopup(new FacebookAuthProvider())
           .then(authResult => {
-            this.updateUser();
+            this.router.navigate(['recent']);
           });
         break;
       }
       default: {
         this.afAuth.auth.signInWithPopup(new GoogleAuthProvider())
           .then(authResult => {
-            this.updateUser();
+            this.router.navigate(['recent']);
           });
       }
     }
-  }
-
-  updateUser() {
-    this.user.subscribe(async cUser => {
-      const {uid, displayName, photoURL, email, phoneNumber} = cUser;
-      let userData: UserData = {
-        bio: '',
-        catchPhrase: '',
-        country: '',
-        displayName: displayName ?? '',
-        email: email ?? '',
-        firstName: '',
-        lastName: '',
-        phoneNumber: phoneNumber ?? '',
-        photoURL: photoURL ?? '/assets/icon/apple-icon-152x152.png',
-        roles: this.initRoles(),
-        uid
-      };
-      // @ts-ignore
-      const userSnap: DocumentSnapshot<any> = await this.db.collection('users').doc(userData.uid).get();
-      if (userSnap.exists) {
-        userData = {...userData, ...userSnap.data()};
-      }
-      await this.db.collection('users').doc(userData.uid).set({...userData}, {merge: true});
-      this.router.navigate(['recent']);
-    });
-  }
-
-  initRoles(): UserRoles {
-    return {
-      admin: false,
-      basic: true,
-      editor: false
-    };
   }
 
   logout() {

@@ -38,7 +38,7 @@ export class PostItemComponent implements OnInit {
 
   async commentPost() {
     this.phs.setCurrentPost({data: this.post, user: this.user});
-    await this.router.navigateByUrl('/demo-code');
+    await this.router.navigateByUrl(`/post/${this.post.id}`);
   }
 
 }

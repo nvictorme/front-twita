@@ -24,13 +24,8 @@ export class MenubarComponent implements OnInit, OnDestroy {
     },
     {
       title: 'Favorites',
-      link: '/demo-code',
+      link: '/recent',
       icon: 'star-outline'
-    },
-    {
-      title: 'Code',
-      link: '/demo-code',
-      icon: 'code-outline'
     },
     {
       title: 'Profile',

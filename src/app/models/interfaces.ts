@@ -18,7 +18,6 @@ export interface UserData {
   lastName?: string;
   phoneNumber?: string;
   photoURL?: string;
-  roles?: UserRoles;
   uid?: string;
 }
 
