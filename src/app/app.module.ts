@@ -12,12 +12,19 @@ import {
   NbSidebarModule,
   NbListModule,
   NbCardModule,
-  NbSpinnerModule, NbUserModule, NbActionsModule, NbIconModule, NbButtonModule, NbAccordionModule, NbInputModule, NbToggleModule
+  NbSpinnerModule,
+  NbUserModule,
+  NbActionsModule,
+  NbIconModule,
+  NbButtonModule,
+  NbAccordionModule,
+  NbInputModule,
+  NbToggleModule,
+  NbToastrService, NbToastrModule, NbWindowModule, NbWindowService, NbDialogModule, NbDialogService
 } from '@nebular/theme';
 import {NbEvaIconsModule} from '@nebular/eva-icons';
 import {HttpClientModule} from '@angular/common/http';
 import {DemoCodeComponent} from './demo-code/demo-code.component';
-import {DemoHomeComponent} from './demo-home/demo-home.component';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFireAuthGuard, AngularFireAuthGuardModule} from '@angular/fire/auth-guard';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
@@ -29,12 +36,14 @@ import {PlaceholderService} from './services/placeholder.service';
 import {UiModule} from './ui/ui.module';
 import {PagesModule} from './pages/pages.module';
 import {PostsModule} from './posts/posts.module';
+import {AuthService} from './services/auth.service';
+import {DbService} from './services/db.service';
+import {StorageService} from './services/storage.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DemoCodeComponent,
-    DemoHomeComponent
+    DemoCodeComponent
   ],
   imports: [
     BrowserModule,
@@ -61,15 +70,26 @@ import {PostsModule} from './posts/posts.module';
     NbIconModule,
     NbButtonModule,
     NbAccordionModule,
+    NbToastrModule.forRoot(),
+    NbWindowModule.forRoot(),
+    NbDialogModule.forRoot(),
     UiModule,
     PagesModule,
     PostsModule
   ],
   providers: [
     AngularFireAuthGuard,
-    PlaceholderService
+    NbToastrService,
+    NbWindowService,
+    NbDialogService,
+    PlaceholderService,
+    AuthService,
+    DbService,
+    StorageService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule {
 }

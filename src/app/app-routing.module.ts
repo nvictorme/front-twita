@@ -1,13 +1,13 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {DemoCodeComponent} from './demo-code/demo-code.component';
-import {DemoHomeComponent} from './demo-home/demo-home.component';
 
 import {AngularFireAuthGuard, redirectLoggedInTo, redirectUnauthorizedTo, customClaims} from '@angular/fire/auth-guard';
 import {MyProfileComponent} from './pages/my-profile/my-profile.component';
 import {PostListComponent} from './posts/post-list/post-list.component';
 import {pipe} from 'rxjs';
 import {map} from 'rxjs/operators';
+import {LoginComponent} from './pages/login/login.component';
 
 const redirectLoggedInToFeed = () => redirectLoggedInTo(['recent']);
 const redirectUnauthorizedToHome = () => redirectUnauthorizedTo(['']);
@@ -17,7 +17,13 @@ const isEditor = () => pipe(customClaims, map(claims => claims.roles.editor));
 const routes: Routes = [
   {
     path: '',
-    component: DemoHomeComponent,
+    component: LoginComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: {authGuardPipe: redirectLoggedInToFeed}
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
     canActivate: [AngularFireAuthGuard],
     data: {authGuardPipe: redirectLoggedInToFeed}
   },

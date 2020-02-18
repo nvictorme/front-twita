@@ -1,13 +1,15 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {MyProfileComponent} from './my-profile/my-profile.component';
-import {NbCardModule, NbLayoutModule, NbListModule, NbSpinnerModule} from '@nebular/theme';
+import {NbButtonModule, NbCardModule, NbIconModule, NbLayoutModule, NbListModule, NbSpinnerModule} from '@nebular/theme';
 import {UiModule} from '../ui/ui.module';
+import {LoginComponent} from './login/login.component';
 
 
 @NgModule({
   declarations: [
-    MyProfileComponent
+    MyProfileComponent,
+    LoginComponent
   ],
   imports: [
     CommonModule,
@@ -15,10 +17,13 @@ import {UiModule} from '../ui/ui.module';
     NbCardModule,
     NbListModule,
     NbSpinnerModule,
-    UiModule
+    NbButtonModule,
+    UiModule,
+    NbIconModule
   ],
   exports: [
-    MyProfileComponent
+    MyProfileComponent,
+    LoginComponent
   ]
 })
 export class PagesModule {

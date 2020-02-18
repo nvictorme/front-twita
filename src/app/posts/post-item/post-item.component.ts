@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {PlaceholderService} from '../../services/placeholder.service';
 import {Router} from '@angular/router';
+import {Post, UserData} from '../../models/interfaces';
+import {DbService} from '../../services/db.service';
 
 @Component({
   selector: 'app-post-item',
@@ -9,18 +11,20 @@ import {Router} from '@angular/router';
 })
 export class PostItemComponent implements OnInit {
 
-  @Input() post: any;
-  @Input() user: any;
+  @Input() post: Post;
+  author: Promise<UserData>;
   isFavorite = false;
   isShared = false;
-  cCount: number;
+  commentCount: number;
 
-  constructor(private phs: PlaceholderService,
+  constructor(private dbs: DbService,
+              private phs: PlaceholderService,
               private router: Router) {
-    this.cCount = this.commentCount();
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.author = this.dbs.getUserData(this.post.authorId);
+    this.commentCount = this.post.meta.comments;
   }
 
   toggleFavorite(evt: any) {
@@ -32,12 +36,8 @@ export class PostItemComponent implements OnInit {
     this.isShared = !this.isShared;
   }
 
-  commentCount() {
-    return Math.ceil(Math.random() * 100);
-  }
-
   async commentPost() {
-    this.phs.setCurrentPost({data: this.post, user: this.user});
+    this.phs.setCurrentPost({data: this.post});
     await this.router.navigateByUrl(`/post/${this.post.id}`);
   }
 

@@ -1,0 +1,22 @@
+<nb-card>
+  <nb-card-body>
+
+    <form [formGroup]="textForm" (submit)="onSubmit()">
+      <input type="text" nbInput fullWidth formControlName="title"
+             fieldSize="large" placeholder="Title">
+      <br><br>
+      <textarea nbInput fullWidth formControlName="description"
+                placeholder="Description" rows="5"></textarea>
+      <br><br>
+      <tag-input formControlName="tags" nbInput maxItems="5" [separatorKeyCodes]="[32]"></tag-input>
+      <br>
+      <div align="center">
+        <button nbButton status="primary" type="submit" [disabled]="textForm.invalid">
+          <nb-icon icon="paper-plane-outline"></nb-icon>
+          Publish
+        </button>
+      </div>
+    </form>
+
+  </nb-card-body>
+</nb-card>

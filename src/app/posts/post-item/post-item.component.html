@@ -1,25 +1,14 @@
 <nb-card>
-  <nb-card-header>
-    <nb-user *ngIf="user" picture="/assets/icon/apple-icon-152x152.png" [name]="user.username"
-             [title]="user.company.catchPhrase"></nb-user>
+  <nb-card-header *ngIf="author | async">
+    <nb-user [picture]="(author | async).photoURL || '/assets/icon/apple-icon-152x152.png'" [name]="(author | async).displayName"
+             [title]="(author | async).catchPhrase || ''"></nb-user>
   </nb-card-header>
   <nb-card-body (click)="commentPost()">
     <b>{{post.title}}</b>
     <br>
-    {{post.body}}
-    <br>
-    <pre>
-      <code class="language-typescript">
-        {{
-        "async commentPost() {\n" +
-        "    this.phs.setCurrentPost({data: this.post, user: this.user});\n" +
-        "    await this.router.navigateByUrl('/demo-code');\n" +
-        "}"
-        }}
-      </code>
-    </pre>
+    {{post.description}}
   </nb-card-body>
-  <nb-card-footer *ngIf="user">
+  <nb-card-footer *ngIf="author | async">
     <nb-actions fullWidth>
       <nb-action>
         <nb-icon [icon]="isFavorite ? 'star' : 'star-outline'"
@@ -34,7 +23,7 @@
       <nb-action>
         <button nbButton status="basic" (click)="commentPost()">
           <nb-icon icon="message-square-outline" status="info"></nb-icon>
-          {{cCount}}
+          {{commentCount}}
         </button>
       </nb-action>
     </nb-actions>

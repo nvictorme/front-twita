@@ -3,10 +3,9 @@
     <br><br>
     <br><br>
   </nb-card>
-  <nb-list *ngIf="posts.length && users" nbInfiniteList [threshold]="100" listenWindowScroll>
+  <nb-list *ngIf="posts.length" nbInfiniteList [threshold]="100" listenWindowScroll>
     <nb-list-item *ngFor="let post of posts" style="padding: 0; max-width: 600px;">
-      <app-post-item [post]="post" [user]="users.get(post.userId)"
-                     style="border-radius: 0; width: 100%;">
+      <app-post-item [post]="post" style="border-radius: 0; width: 100%;">
       </app-post-item>
     </nb-list-item>
   </nb-list>

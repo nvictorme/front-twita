@@ -31,14 +31,6 @@ export const environment = {
     {
       title: 'File',
       icon: 'file-add-outline'
-    },
-    {
-      title: 'Video',
-      icon: 'video-outline'
-    },
-    {
-      title: 'Audio',
-      icon: 'music-outline'
     }
   ]
 };

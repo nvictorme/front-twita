@@ -3,12 +3,13 @@ import {Observable} from 'rxjs';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {AuthProviders} from '../models/enumerations';
 import * as firebase from 'firebase';
+import {Router} from '@angular/router';
+import {AngularFirestore} from '@angular/fire/firestore';
+import {NbGlobalPhysicalPosition, NbToastrService} from '@nebular/theme';
 import GoogleAuthProvider = firebase.auth.GoogleAuthProvider;
 import GithubAuthProvider = firebase.auth.GithubAuthProvider;
 import TwitterAuthProvider = firebase.auth.TwitterAuthProvider;
 import FacebookAuthProvider = firebase.auth.FacebookAuthProvider;
-import {Router} from '@angular/router';
-import {AngularFirestore} from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,8 @@ export class AuthService {
 
   constructor(private afAuth: AngularFireAuth,
               private db: AngularFirestore,
-              private router: Router) {
+              private router: Router,
+              private toasty: NbToastrService) {
     this.user = this.afAuth.user;
   }
 
@@ -27,43 +29,38 @@ export class AuthService {
     return this.user;
   }
 
-  login(authProvider: AuthProviders) {
+  getAuthProvider(authProvider: AuthProviders) {
     switch (authProvider) {
-      case AuthProviders.GOOGLE: {
-        this.afAuth.auth.signInWithPopup(new GoogleAuthProvider())
-          .then(authResult => {
-            this.router.navigate(['recent']);
-          });
-        break;
-      }
-      case AuthProviders.GITHUB: {
-        this.afAuth.auth.signInWithPopup(new GithubAuthProvider())
-          .then(authResult => {
-            this.router.navigate(['recent']);
-          });
-        break;
-      }
-      case AuthProviders.TWITTER: {
-        this.afAuth.auth.signInWithPopup(new TwitterAuthProvider())
-          .then(authResult => {
-            this.router.navigate(['recent']);
-          });
-        break;
-      }
-      case AuthProviders.FACEBOOK: {
-        this.afAuth.auth.signInWithPopup(new FacebookAuthProvider())
-          .then(authResult => {
-            this.router.navigate(['recent']);
-          });
-        break;
-      }
-      default: {
-        this.afAuth.auth.signInWithPopup(new GoogleAuthProvider())
-          .then(authResult => {
-            this.router.navigate(['recent']);
-          });
-      }
+      case AuthProviders.GOOGLE:
+        return new GoogleAuthProvider();
+      case AuthProviders.GITHUB:
+        return new GithubAuthProvider();
+      case AuthProviders.TWITTER:
+        return new TwitterAuthProvider();
+      case AuthProviders.FACEBOOK:
+        return new FacebookAuthProvider();
+      default:
+        return new GoogleAuthProvider();
     }
+  }
+
+  login(authProvider: AuthProviders) {
+    this.afAuth.auth.signInWithPopup(this.getAuthProvider(authProvider))
+      .then(authResult => {
+        this.router.navigate(['recent']).then(() => {
+          this.toasty.show(`Welcome back!`, undefined, {
+            duration: 2000,
+            position: NbGlobalPhysicalPosition.TOP_RIGHT,
+            status: 'success'
+          });
+        });
+      }).catch(error => {
+      this.toasty.show(error.message, 'Something went wrong!', {
+        duration: 5000,
+        position: NbGlobalPhysicalPosition.TOP_RIGHT,
+        status: 'danger'
+      });
+    });
   }
 
   logout() {
