@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {PlaceholderService} from '../../services/placeholder.service';
+import {AfterViewChecked, Component, Input, OnInit} from '@angular/core';
+import {FavoriteService} from '../../services/favorite.service';
 import {Router} from '@angular/router';
 import {Post, UserData} from '../../models/interfaces';
 import {DbService} from '../../services/db.service';
@@ -9,7 +9,7 @@ import {DbService} from '../../services/db.service';
   templateUrl: './post-item.component.html',
   styleUrls: ['./post-item.component.scss']
 })
-export class PostItemComponent implements OnInit {
+export class PostItemComponent implements OnInit, AfterViewChecked {
 
   @Input() post: Post;
   author: Promise<UserData>;
@@ -18,7 +18,7 @@ export class PostItemComponent implements OnInit {
   commentCount: number;
 
   constructor(private dbs: DbService,
-              private phs: PlaceholderService,
+              private favs: FavoriteService,
               private router: Router) {
   }
 
@@ -27,9 +27,13 @@ export class PostItemComponent implements OnInit {
     this.commentCount = this.post.meta.comments;
   }
 
+  ngAfterViewChecked(): void {
+    this.isFavorite = this.favs.isFav(this.post.id);
+  }
+
   toggleFavorite(evt: any) {
     this.isFavorite = !this.isFavorite;
-    this.isFavorite ? this.phs.addFav(this.post) : this.phs.removeFav(this.post);
+    this.isFavorite ? this.favs.addFav(this.post) : this.favs.removeFav(this.post);
   }
 
   toggleShared(evt: any) {
@@ -37,7 +41,7 @@ export class PostItemComponent implements OnInit {
   }
 
   async commentPost() {
-    this.phs.setCurrentPost({data: this.post});
+    this.favs.setCurrentPost({data: this.post});
     await this.router.navigateByUrl(`/post/${this.post.id}`);
   }
 

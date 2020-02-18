@@ -1,7 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Subscription} from 'rxjs';
-import {PlaceholderService} from '../../services/placeholder.service';
-import {DbService} from '../../services/db.service';
+import {Component, Input, OnInit} from '@angular/core';
 import {Post} from '../../models/interfaces';
 
 @Component({
@@ -9,29 +6,18 @@ import {Post} from '../../models/interfaces';
   templateUrl: './post-list.component.html',
   styleUrls: ['./post-list.component.scss']
 })
-export class PostListComponent implements OnInit, OnDestroy {
+export class PostListComponent implements OnInit {
 
-  postSub: Subscription;
-  posts: Post[] = [];
-  loading = true;
+  @Input() posts: Post[];
+  @Input() loading: boolean;
 
-  constructor(private phs: PlaceholderService,
-              private dbs: DbService) {
+  constructor() {
   }
 
   ngOnInit(): void {
-    this.postSub = this.dbs.collection$('posts', ref => ref.orderBy('createdAt', 'desc'))
-      .subscribe((posts: Post[]) => {
-        this.posts = posts;
-        this.loading = false;
-      });
   }
 
   loadMore() {
     this.loading = true;
-  }
-
-  ngOnDestroy(): void {
-    this.postSub.unsubscribe();
   }
 }

@@ -17,14 +17,17 @@ import { CreatePostComponent } from './create-post/create-post.component';
 import { PostTextFormComponent } from './create-post/post-text-form/post-text-form.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {TagInputModule} from 'ngx-chips';
+import {HighlightJsModule} from 'ngx-highlight-js';
+import { PostCodeFormComponent } from './create-post/post-code-form/post-code-form.component';
 
 
 
 @NgModule({
-  declarations: [PostListComponent, PostItemComponent, CreatePostComponent, PostTextFormComponent],
-  exports: [
-    PostItemComponent
-  ],
+  declarations: [PostListComponent, PostItemComponent, CreatePostComponent, PostTextFormComponent, PostCodeFormComponent],
+    exports: [
+        PostItemComponent,
+        PostListComponent
+    ],
   imports: [
     CommonModule,
     NbCardModule,
@@ -38,7 +41,8 @@ import {TagInputModule} from 'ngx-chips';
     NbTabsetModule,
     NbInputModule,
     ReactiveFormsModule,
-    TagInputModule
+    TagInputModule,
+    HighlightJsModule
   ]
 })
 export class PostsModule { }

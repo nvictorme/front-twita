@@ -3,8 +3,8 @@
 
     <nb-tabset>
       <nb-tab *ngFor="let ti of tabItems" [tabTitle]="ti.title" [tabIcon]="ti.icon" responsive>
-        <app-post-text-form></app-post-text-form>
-        <p *ngIf="ti.title === 'Code'">Code</p>
+        <app-post-text-form *ngIf="ti.title === 'Text'"></app-post-text-form>
+        <app-post-code-form *ngIf="ti.title === 'Code'"></app-post-code-form>
         <p *ngIf="ti.title === 'Image'">Image</p>
         <p *ngIf="ti.title === 'File'">PDF or Zip</p>
       </nb-tab>

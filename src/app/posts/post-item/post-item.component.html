@@ -1,12 +1,17 @@
 <nb-card>
   <nb-card-header *ngIf="author | async">
-    <nb-user [picture]="(author | async).photoURL || '/assets/icon/apple-icon-152x152.png'" [name]="(author | async).displayName"
+    <nb-user [picture]="(author | async).photoURL || '/assets/icon/apple-icon-152x152.png'"
+             [name]="(author | async).displayName"
              [title]="(author | async).catchPhrase || ''"></nb-user>
   </nb-card-header>
   <nb-card-body (click)="commentPost()">
     <b>{{post.title}}</b>
     <br>
     {{post.description}}
+    <br>
+    <textarea *ngIf="post.type === 1" highlight-js
+              [innerText]="post.media.code">
+    </textarea>
   </nb-card-body>
   <nb-card-footer *ngIf="author | async">
     <nb-actions fullWidth>
@@ -28,4 +33,8 @@
       </nb-action>
     </nb-actions>
   </nb-card-footer>
+  <div class="post-tags">
+    <a *ngFor="let tag of post.tags">#{{tag}}</a>
+  </div>
+  <br>
 </nb-card>

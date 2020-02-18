@@ -6,6 +6,13 @@ export interface UserRoles {
   editor: boolean;
 }
 
+export interface UserMeta {
+  posts?: number;
+  ups?: number;
+  downs?: number;
+  stars?: number;
+}
+
 export interface UserData {
   bio?: string;
   catchPhrase?: string;
@@ -16,6 +23,7 @@ export interface UserData {
   lastName?: string;
   phoneNumber?: string;
   photoURL?: string;
+  meta?: UserMeta;
   uid?: string;
 }
 
@@ -29,6 +37,8 @@ export interface PostMeta {
   comments?: number;
   shares?: number;
   stars?: number;
+  ups?: number;
+  downs?: number;
 }
 
 export interface Post {
@@ -43,3 +53,11 @@ export interface Post {
   type: PostTypes;
 }
 
+export interface Favorite {
+  id?: string;
+  authorId: string;
+  title: string;
+  description: string;
+  pid: string;
+  uid: string;
+}

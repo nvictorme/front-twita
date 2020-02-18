@@ -1,22 +1,22 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Post} from '../../../models/interfaces';
 import {Observable} from 'rxjs';
 import {User} from 'firebase';
 import {AuthService} from '../../../services/auth.service';
 import {DbService} from '../../../services/db.service';
-import {PostTypes} from '../../../models/enumerations';
-import {initPostMeta, parseTags} from '../../../helpers';
 import {NbDialogService, NbGlobalPhysicalPosition, NbToastrService} from '@nebular/theme';
+import {Post} from '../../../models/interfaces';
+import {initPostMedia, initPostMeta, parseTags} from '../../../helpers';
+import {PostTypes} from '../../../models/enumerations';
 
 @Component({
-  selector: 'app-post-text-form',
-  templateUrl: './post-text-form.component.html',
-  styleUrls: ['./post-text-form.component.scss']
+  selector: 'app-post-code-form',
+  templateUrl: './post-code-form.component.html',
+  styleUrls: ['./post-code-form.component.scss']
 })
-export class PostTextFormComponent implements OnInit {
+export class PostCodeFormComponent implements OnInit {
 
-  textForm: FormGroup;
+  codeForm: FormGroup;
   user: Observable<User | null>;
 
   constructor(private auth: AuthService,
@@ -31,33 +31,36 @@ export class PostTextFormComponent implements OnInit {
   }
 
   initTextForm() {
-    this.textForm = new FormGroup({
+    this.codeForm = new FormGroup({
       title: new FormControl(null, {
         validators: [Validators.required, Validators.minLength(5), Validators.maxLength(150)]
       }),
       description: new FormControl(null, {
         validators: [Validators.required, Validators.minLength(5), Validators.maxLength(3000)]
       }),
+      code: new FormControl(null, {
+        validators: [Validators.required, Validators.minLength(5), Validators.maxLength(5000)]
+      }),
       tags: new FormControl([])
     });
   }
 
   onSubmit() {
-    if (this.textForm.invalid) {
+    if (this.codeForm.invalid) {
       return;
     }
     try {
-      const {title, description, tags} = this.textForm.getRawValue();
+      const {title, description, code, tags} = this.codeForm.getRawValue();
       this.user.subscribe(userData => {
         const newPost: Post = {
           authorId: userData.uid,
           createdAt: new Date(),
           description,
-          media: {},
+          media: {...initPostMedia(), code},
           meta: initPostMeta(),
           tags: parseTags(tags),
           title,
-          type: PostTypes.Text
+          type: PostTypes.Code
         };
         this.dbs.updateAt('posts', newPost)
           .then(updateResult => {

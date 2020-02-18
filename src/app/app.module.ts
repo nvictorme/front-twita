@@ -32,7 +32,7 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireAnalyticsModule} from '@angular/fire/analytics';
 import {AngularFirePerformanceModule} from '@angular/fire/performance';
 import {AngularFireMessagingModule} from '@angular/fire/messaging';
-import {PlaceholderService} from './services/placeholder.service';
+import {FavoriteService} from './services/favorite.service';
 import {UiModule} from './ui/ui.module';
 import {PagesModule} from './pages/pages.module';
 import {PostsModule} from './posts/posts.module';
@@ -82,7 +82,7 @@ import {StorageService} from './services/storage.service';
     NbToastrService,
     NbWindowService,
     NbDialogService,
-    PlaceholderService,
+    FavoriteService,
     AuthService,
     DbService,
     StorageService

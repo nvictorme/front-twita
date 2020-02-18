@@ -1,14 +1,13 @@
-import {AfterViewChecked, Component, OnInit} from '@angular/core';
-import {PlaceholderService} from '../services/placeholder.service';
+import {Component, OnInit} from '@angular/core';
+import {FavoriteService} from '../services/favorite.service';
 import * as moment from 'moment';
-import * as Prism from 'prismjs';
 
 @Component({
   selector: 'app-demo-code',
   templateUrl: './demo-code.component.html',
   styleUrls: ['./demo-code.component.scss']
 })
-export class DemoCodeComponent implements OnInit, AfterViewChecked {
+export class DemoCodeComponent implements OnInit {
 
   post: any;
   comments: any[] = [
@@ -49,15 +48,11 @@ export class DemoCodeComponent implements OnInit, AfterViewChecked {
     }
   ];
 
-  constructor(private phs: PlaceholderService) {
+  constructor(private phs: FavoriteService) {
   }
 
   ngOnInit(): void {
     this.post = this.phs.getCurrentPost();
-  }
-
-  ngAfterViewChecked(): void {
-    Prism.highlightAll(true);
   }
 
   getMeta() {

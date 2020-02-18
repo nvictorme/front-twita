@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Subscription} from 'rxjs';
-import {PlaceholderService} from '../../services/placeholder.service';
+import {FavoriteService} from '../../services/favorite.service';
 
 @Component({
   selector: 'app-favbar',
@@ -12,7 +12,7 @@ export class FavbarComponent implements OnInit {
   favSub: Subscription;
   favs: any[] = [];
 
-  constructor(private phs: PlaceholderService) { }
+  constructor(private phs: FavoriteService) { }
 
   ngOnInit(): void {
     this.favSub = this.phs.getFavListener().subscribe((favs: any[]) => this.favs = favs);

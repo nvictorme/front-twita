@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import * as firebase from 'firebase/app';
 import FieldValue = firebase.firestore.FieldValue;
-import {UserData} from '../models/interfaces';
+import {Favorite, Post, UserData} from '../models/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -73,5 +73,21 @@ export class DbService {
         });
       }
     });
+  }
+
+  addFavorite(uid: string, post: Post) {
+    const {authorId, title, description, id} = post;
+    const favorite: Favorite = {
+      authorId,
+      title,
+      description,
+      pid: id,
+      uid
+    };
+    this.updateAt(`users/${uid}/favorites/${id}`, favorite);
+  }
+
+  removeFavorite(uid: string, pid: string) {
+    this.deleteAt(`users/${uid}/favorites/${pid}`);
   }
 }
