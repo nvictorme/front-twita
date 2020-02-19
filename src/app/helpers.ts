@@ -1,5 +1,8 @@
 import {PostMedia, PostMeta} from './models/interfaces';
 import slugify from 'slugify';
+import * as moment from 'moment';
+import * as firebase from 'firebase';
+import Timestamp = firebase.firestore.Timestamp;
 
 export const initPostMeta = (): PostMeta => {
   return {
@@ -27,4 +30,8 @@ export const slugIt = (str: string): string => {
     lower: true,
     remove: /\W/g
   });
+};
+
+export const formatFireDate = (fireDate: any) => {
+  return moment(fireDate.toDate()).format('MM-DD-YYYY hh:mm a');
 };

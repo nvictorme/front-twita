@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {NbMenuItem} from '@nebular/theme';
 import {environment} from '../../../environments/environment';
 
@@ -10,6 +10,8 @@ import {environment} from '../../../environments/environment';
 export class CreatePostComponent implements OnInit {
 
   tabItems: NbMenuItem[] = environment.twitaOptions;
+  @Input() isComment = false;
+  @Input() postId: string;
 
   constructor() { }
 

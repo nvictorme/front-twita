@@ -24,10 +24,11 @@ import { PostCodeFormComponent } from './create-post/post-code-form/post-code-fo
 
 @NgModule({
   declarations: [PostListComponent, PostItemComponent, CreatePostComponent, PostTextFormComponent, PostCodeFormComponent],
-    exports: [
-        PostItemComponent,
-        PostListComponent
-    ],
+  exports: [
+    PostItemComponent,
+    PostListComponent,
+    CreatePostComponent
+  ],
   imports: [
     CommonModule,
     NbCardModule,

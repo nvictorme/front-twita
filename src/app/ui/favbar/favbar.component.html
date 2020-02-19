@@ -1,13 +1,13 @@
 <nb-card>
   <div style="align-items: stretch;">
-    <input [disabled]="!favs.length" type="text" nbInput fullWidth status="info" placeholder="Search favorites...">
+    <input [disabled]="!myFavorites.length" type="text" nbInput fullWidth status="info" placeholder="Search favorites...">
   </div>
 </nb-card>
-<div *ngIf="!favs.length" align="center">
+<div *ngIf="!myFavorites.length" align="center">
   <b>You have no favorites yet</b>
 </div>
-<nb-list *ngIf="favs.length">
-  <nb-list-item *ngFor="let fav of favs">
+<nb-list *ngIf="myFavorites.length">
+  <nb-list-item *ngFor="let fav of myFavorites">
     {{fav.title}}
   </nb-list-item>
 </nb-list>

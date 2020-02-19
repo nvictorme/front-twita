@@ -24,7 +24,6 @@ import {
 } from '@nebular/theme';
 import {NbEvaIconsModule} from '@nebular/eva-icons';
 import {HttpClientModule} from '@angular/common/http';
-import {DemoCodeComponent} from './demo-code/demo-code.component';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFireAuthGuard, AngularFireAuthGuardModule} from '@angular/fire/auth-guard';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
@@ -42,8 +41,7 @@ import {StorageService} from './services/storage.service';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    DemoCodeComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,7 @@ import {FavoriteService} from '../../services/favorite.service';
 import {Router} from '@angular/router';
 import {Post, UserData} from '../../models/interfaces';
 import {DbService} from '../../services/db.service';
+import {formatFireDate} from '../../helpers';
 
 @Component({
   selector: 'app-post-item',
@@ -41,8 +42,11 @@ export class PostItemComponent implements OnInit, AfterViewChecked {
   }
 
   async commentPost() {
-    this.favs.setCurrentPost({data: this.post});
     await this.router.navigateByUrl(`/post/${this.post.id}`);
+  }
+
+  formatDate() {
+    return formatFireDate(this.post.createdAt);
   }
 
 }

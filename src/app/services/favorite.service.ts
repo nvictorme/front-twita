@@ -2,18 +2,25 @@ import {Injectable, OnInit} from '@angular/core';
 import {Subject} from 'rxjs';
 import {DbService} from './db.service';
 import {AuthService} from './auth.service';
-import {Post} from '../models/interfaces';
+import {Favorite, Post} from '../models/interfaces';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FavoriteService {
 
-  private favListener = new Subject<any[]>();
+  private favListener = new Subject<Favorite[]>();
   private favorites: any[] = [];
 
   constructor(private dbs: DbService,
               private auth: AuthService) {
+  }
+
+  getFavListener() {
+    return this.favListener.asObservable();
+  }
+
+  getFavorites() {
     this.auth.getUser().subscribe(user => {
       this.dbs.collection$(`users/${user.uid}/favorites`)
         .subscribe(favorites => {
@@ -23,15 +30,11 @@ export class FavoriteService {
     });
   }
 
-  getFavListener() {
-    return this.favListener.asObservable();
-  }
-
-  getCurrentPost(): any {
+  getCurrentPost(): Post {
     return JSON.parse(localStorage.getItem('currentPost'));
   }
 
-  setCurrentPost(post: any): void {
+  setCurrentPost(post: Post): void {
     localStorage.setItem('currentPost', JSON.stringify(post));
   }
 
@@ -40,13 +43,13 @@ export class FavoriteService {
   }
 
   addFav(post: Post) {
-    this.auth.getUser().subscribe(userRecord => {
+    this.auth.getUser().subscribe(async userRecord => {
       this.dbs.addFavorite(userRecord.uid, post);
     });
   }
 
   removeFav(post: Post) {
-    this.auth.getUser().subscribe(userRecord => {
+    this.auth.getUser().subscribe(async userRecord => {
       this.dbs.removeFavorite(userRecord.uid, post.id);
     });
   }

@@ -7,8 +7,9 @@
   <nb-card-body (click)="commentPost()">
     <b>{{post.title}}</b>
     <br>
-    {{post.description}}
+    <small style="color: lightgrey;">{{formatDate()}}</small>
     <br>
+    {{post.description}}
     <textarea *ngIf="post.type === 1" highlight-js
               [innerText]="post.media.code">
     </textarea>

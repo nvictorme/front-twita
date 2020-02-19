@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DemoCodeComponent } from './demo-code.component';
+import { SinglePostComponent } from './single-post.component';
 
-describe('DemoCodeComponent', () => {
-  let component: DemoCodeComponent;
-  let fixture: ComponentFixture<DemoCodeComponent>;
+describe('SinglePostComponent', () => {
+  let component: SinglePostComponent;
+  let fixture: ComponentFixture<SinglePostComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DemoCodeComponent ]
+      declarations: [ SinglePostComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DemoCodeComponent);
+    fixture = TestBed.createComponent(SinglePostComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

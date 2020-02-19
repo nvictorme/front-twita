@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {User} from 'firebase';
@@ -18,6 +18,8 @@ export class PostCodeFormComponent implements OnInit {
 
   codeForm: FormGroup;
   user: Observable<User | null>;
+  @Input() isComment = false;
+  @Input() postId: string;
 
   constructor(private auth: AuthService,
               private dbs: DbService,
@@ -62,7 +64,7 @@ export class PostCodeFormComponent implements OnInit {
           title,
           type: PostTypes.Code
         };
-        this.dbs.updateAt('posts', newPost)
+        this.dbs.updateAt(this.isComment ? `posts/${this.postId}/comments` : 'posts', newPost)
           .then(updateResult => {
             this.toasty.show('Post created successfully!', undefined, {
               duration: 2000,

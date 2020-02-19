@@ -1,18 +1,30 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {MyProfileComponent} from './my-profile/my-profile.component';
-import {NbButtonModule, NbCardModule, NbIconModule, NbLayoutModule, NbListModule, NbSpinnerModule} from '@nebular/theme';
+import {
+  NbAccordionModule,
+  NbActionsModule,
+  NbButtonModule,
+  NbCardModule,
+  NbIconModule,
+  NbLayoutModule,
+  NbListModule,
+  NbSpinnerModule
+} from '@nebular/theme';
 import {UiModule} from '../ui/ui.module';
 import {LoginComponent} from './login/login.component';
 import { RecentComponent } from './recent/recent.component';
 import {PostsModule} from '../posts/posts.module';
+import { SinglePostComponent } from './single-post/single-post.component';
+import {RouterModule} from '@angular/router';
 
 
 @NgModule({
   declarations: [
     MyProfileComponent,
     LoginComponent,
-    RecentComponent
+    RecentComponent,
+    SinglePostComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +35,10 @@ import {PostsModule} from '../posts/posts.module';
     NbButtonModule,
     UiModule,
     NbIconModule,
-    PostsModule
+    PostsModule,
+    NbActionsModule,
+    NbAccordionModule,
+    RouterModule
   ],
   exports: [
     MyProfileComponent,

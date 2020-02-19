@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Post} from '../../../models/interfaces';
 import {Observable} from 'rxjs';
@@ -7,7 +7,7 @@ import {AuthService} from '../../../services/auth.service';
 import {DbService} from '../../../services/db.service';
 import {PostTypes} from '../../../models/enumerations';
 import {initPostMeta, parseTags} from '../../../helpers';
-import {NbDialogService, NbGlobalPhysicalPosition, NbToastrService} from '@nebular/theme';
+import {NbGlobalPhysicalPosition, NbToastrService} from '@nebular/theme';
 
 @Component({
   selector: 'app-post-text-form',
@@ -18,11 +18,12 @@ export class PostTextFormComponent implements OnInit {
 
   textForm: FormGroup;
   user: Observable<User | null>;
+  @Input() isComment = false;
+  @Input() postId: string;
 
   constructor(private auth: AuthService,
               private dbs: DbService,
-              private toasty: NbToastrService,
-              private dialogService: NbDialogService) {
+              private toasty: NbToastrService) {
   }
 
   ngOnInit(): void {
@@ -59,7 +60,7 @@ export class PostTextFormComponent implements OnInit {
           title,
           type: PostTypes.Text
         };
-        this.dbs.updateAt('posts', newPost)
+        this.dbs.updateAt(this.isComment ? `posts/${this.postId}/comments` : 'posts', newPost)
           .then(updateResult => {
             this.toasty.show('Post created successfully!', undefined, {
               duration: 2000,

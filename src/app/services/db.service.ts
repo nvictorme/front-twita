@@ -12,6 +12,7 @@ import {Favorite, Post, UserData} from '../models/interfaces';
 export class DbService {
 
   private usersMap = new Map<string, UserData>();
+  private singlesMap = new Map<string, Post>();
 
   constructor(private db: AngularFirestore) {
   }
@@ -70,6 +71,19 @@ export class DbService {
         this.doc$(`users/${uid}`).subscribe(userData => {
           this.usersMap.set(uid, userData);
           fulfill(userData);
+        });
+      }
+    });
+  }
+
+  getSinglePost(pid: string): Promise<Post> {
+    return new Promise((fulfill, reject) => {
+      if (this.singlesMap.has(pid)) {
+        fulfill(this.singlesMap.get(pid));
+      } else {
+        this.doc$(`posts/${pid}`).subscribe(post => {
+          this.singlesMap.set(pid, post);
+          fulfill(post);
         });
       }
     });

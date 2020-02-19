@@ -1,4 +1,6 @@
 import {PostTypes} from './enumerations';
+import * as firebase from 'firebase';
+import Timestamp = firebase.firestore.Timestamp;
 
 export interface UserRoles {
   admin: boolean;
@@ -44,7 +46,7 @@ export interface PostMeta {
 export interface Post {
   id?: string;
   authorId: string;
-  createdAt: Date;
+  createdAt: any;
   description: string;
   media?: PostMedia;
   meta: PostMeta;

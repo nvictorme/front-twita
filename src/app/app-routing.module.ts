@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {DemoCodeComponent} from './demo-code/demo-code.component';
 
 import {AngularFireAuthGuard, redirectLoggedInTo, redirectUnauthorizedTo, customClaims} from '@angular/fire/auth-guard';
 import {MyProfileComponent} from './pages/my-profile/my-profile.component';
@@ -8,6 +7,7 @@ import {pipe} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {LoginComponent} from './pages/login/login.component';
 import {RecentComponent} from './pages/recent/recent.component';
+import {SinglePostComponent} from './pages/single-post/single-post.component';
 
 const redirectLoggedInToFeed = () => redirectLoggedInTo(['recent']);
 const redirectUnauthorizedToHome = () => redirectUnauthorizedTo(['']);
@@ -35,7 +35,7 @@ const routes: Routes = [
   },
   {
     path: 'post/:postId',
-    component: DemoCodeComponent,
+    component: SinglePostComponent,
     canActivate: [AngularFireAuthGuard],
     data: {authGuardPipe: redirectUnauthorizedToHome}
   },
