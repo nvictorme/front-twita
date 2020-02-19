@@ -1,13 +1,19 @@
 <nb-card>
   <div style="align-items: stretch;">
-    <input [disabled]="!myFavorites.length" type="text" nbInput fullWidth status="info" placeholder="Search favorites...">
+    <input [disabled]="!myFavorites.length" type="text" nbInput fullWidth status="info"
+           placeholder="Search favorites..." (keyup)="filterFavs($event)">
   </div>
 </nb-card>
 <div *ngIf="!myFavorites.length" align="center">
-  <b>You have no favorites yet</b>
+  <b><i>You have no favorites yet</i></b>
+  <hr>
+  <b>You can keep up to 100 favorite posts</b>
 </div>
-<nb-list *ngIf="myFavorites.length">
-  <nb-list-item *ngFor="let fav of myFavorites">
-    {{fav.title}}
+<nb-list *ngIf="filtered.length">
+  <nb-list-item *ngFor="let fav of filtered" (click)="onFavClick(fav.pid)">
+    <app-fav-list-item [fav]="fav"></app-fav-list-item>
   </nb-list-item>
 </nb-list>
+<div *ngIf="!filtered.length" align="center">
+  <b><i>No results matching your keyword</i></b>
+</div>

@@ -13,8 +13,8 @@ export class MenubarComponent implements OnInit, OnDestroy {
 
   user: Observable<User | null> = null;
   barStatus: any = {
-    favbar: false,
-    menubar: false
+    favbar: true,
+    menubar: true
   };
   items: NbMenuItem[] = [
     {

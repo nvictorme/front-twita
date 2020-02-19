@@ -1,11 +1,11 @@
-<div style="max-width: 800px; margin: auto; background: aliceblue;">
+<div class="single-post">
   <section>
     <app-post-item *ngIf="post" [post]="post"></app-post-item>
   </section>
   <section>
     <nb-list nbInfiniteList [threshold]="500">
       <nb-list-item *ngFor="let c of comments">
-        <app-post-item style="width: 80%; margin: auto;" [post]="c"></app-post-item>
+        <app-post-item style="width: 90%; margin: auto;" [post]="c"></app-post-item>
       </nb-list-item>
     </nb-list>
   </section>

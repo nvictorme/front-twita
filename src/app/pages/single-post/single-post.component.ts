@@ -10,14 +10,14 @@ import {Subscription} from 'rxjs';
   selector: 'app-single-post',
   templateUrl: './single-post.component.html',
   styleUrls: ['./single-post.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SinglePostComponent implements OnInit, OnDestroy {
 
   post: Post;
   commentsSub: Subscription;
   comments: Post[] = [];
-  @ViewChild('replyBox', {static: false}) replyBox;
+  // @ViewChild('replyBox', {static: false}) replyBox;
 
   constructor(private dbs: DbService,
               private route: ActivatedRoute) {
@@ -34,7 +34,7 @@ export class SinglePostComponent implements OnInit, OnDestroy {
   }
 
   toggleReplyBox() {
-    this.replyBox.toggle();
+    // this.replyBox.toggle();
   }
 
   formatDate() {

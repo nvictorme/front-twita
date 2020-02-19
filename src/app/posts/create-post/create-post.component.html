@@ -5,8 +5,8 @@
       <nb-tab *ngFor="let ti of tabItems" [tabTitle]="ti.title" [tabIcon]="ti.icon" responsive>
         <app-post-text-form [isComment]="isComment" [postId]="postId" *ngIf="ti.title === 'Text'"></app-post-text-form>
         <app-post-code-form [isComment]="isComment" [postId]="postId" *ngIf="ti.title === 'Code'"></app-post-code-form>
-        <p *ngIf="ti.title === 'Image'">Image</p>
-        <p *ngIf="ti.title === 'File'">PDF or Zip</p>
+        <app-post-image-form [isComment]="isComment" [postId]="postId" *ngIf="ti.title === 'Image'">Image</app-post-image-form>
+        <app-post-video-form [isComment]="isComment" [postId]="postId" *ngIf="ti.title === 'Video'">Video</app-post-video-form>
       </nb-tab>
     </nb-tabset>
 

@@ -6,7 +6,7 @@
     <app-header *ngIf="user | async"></app-header>
   </nb-layout-header>
 
-  <nb-sidebar *ngIf="user | async" tag="favbar" state="collapsed" left fixed>
+  <nb-sidebar *ngIf="user | async" tag="favbar" state="expanded" left fixed>
     <app-favbar></app-favbar>
   </nb-sidebar>
 
@@ -14,7 +14,7 @@
     <router-outlet></router-outlet>
   </nb-layout-column>
 
-  <nb-sidebar *ngIf="user | async" tag="menubar" state="collapsed" right fixed>
+  <nb-sidebar *ngIf="user | async" tag="menubar" state="expanded" right fixed>
     <app-menubar></app-menubar>
   </nb-sidebar>
 

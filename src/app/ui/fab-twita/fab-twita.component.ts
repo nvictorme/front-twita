@@ -18,7 +18,6 @@ export class FabTwitaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.registerMenuService();
   }
 
   openTwitaDialog() {

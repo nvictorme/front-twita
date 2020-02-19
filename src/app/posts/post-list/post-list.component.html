@@ -1,4 +1,4 @@
-<div style="max-width: 600px; margin: auto;">
+<div class="post-list">
   <nb-card *ngIf="loading" [nbSpinner]="loading" nbSpinnerMessage="Loading..." nbSpinnerSize="giant">
     <br><br>
     <br><br>
@@ -6,9 +6,9 @@
   <div align="center">
     <h4 *ngIf="!loading && !posts.length">There are no posts yet</h4>
   </div>
-  <nb-list *ngIf="posts.length" nbInfiniteList [threshold]="100" listenWindowScroll>
-    <nb-list-item *ngFor="let post of posts" style="padding: 0; max-width: 600px;">
-      <app-post-item [post]="post" style="border-radius: 0; width: 100%;">
+  <nb-list *ngIf="posts.length">
+    <nb-list-item *ngFor="let post of posts">
+      <app-post-item [post]="post" class="post-list-item">
       </app-post-item>
     </nb-list-item>
   </nb-list>

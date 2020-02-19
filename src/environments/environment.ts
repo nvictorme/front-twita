@@ -14,7 +14,7 @@ export const environment = {
     appId: '1:36636702:web:1f7fb36f9111d719acc60f',
     measurementId: 'G-1LWSDK596J'
   },
-  placeholderURL: 'https://jsonplaceholder.typicode.com',
+  youtubeUrlPattern: /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})?$/,
   twitaOptions: [
     {
       title: 'Text',
@@ -29,8 +29,8 @@ export const environment = {
       icon: 'image-outline'
     },
     {
-      title: 'File',
-      icon: 'file-add-outline'
+      title: 'Video',
+      icon: 'video-outline'
     }
   ]
 };

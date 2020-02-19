@@ -10,9 +10,12 @@
     <small style="color: lightgrey;">{{formatDate()}}</small>
     <br>
     {{post.description}}
-    <textarea *ngIf="post.type === 1" highlight-js
+    <br>
+    <textarea *ngIf="post.type === PostTypes.Code" highlight-js
               [innerText]="post.media.code">
     </textarea>
+    <img *ngIf="post.type === PostTypes.Image" width="100%" height="auto" [src]="postImage | async" [alt]="post.title">
+    <span *ngIf="post.type === PostTypes.Video" [innerHTML]="embedVideo()"></span>
   </nb-card-body>
   <nb-card-footer *ngIf="author | async">
     <nb-actions fullWidth>

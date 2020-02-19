@@ -1,0 +1,25 @@
+<nb-card>
+  <nb-card-body>
+
+    <form [formGroup]="textForm" (submit)="onSubmit()">
+      <input type="text" nbInput fullWidth formControlName="title"
+             fieldSize="large" placeholder="Title">
+      <br><br>
+      <textarea nbInput fullWidth formControlName="description"
+                placeholder="Description" rows="3"></textarea>
+      <br><br>
+      <input type="text" nbInput fullWidth formControlName="url"
+             fieldSize="large" placeholder="e.g.: https://www.youtube.com/watch?v=TTAU7lLDZYU">
+      <br><br>
+      <tag-input *ngIf="!isComment" formControlName="tags" nbInput maxItems="5" [separatorKeyCodes]="[32]"></tag-input>
+      <br>
+      <div align="center">
+        <button nbButton status="primary" type="submit" [disabled]="textForm.invalid">
+          <nb-icon icon="paper-plane-outline"></nb-icon>
+          {{ isComment ? 'Comment' : 'Publish'}}
+        </button>
+      </div>
+    </form>
+
+  </nb-card-body>
+</nb-card>

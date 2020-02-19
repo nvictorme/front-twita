@@ -17,6 +17,7 @@ import {MenubarComponent} from './menubar/menubar.component';
 import {FooterComponent} from './footer/footer.component';
 import { FabTwitaComponent } from './fab-twita/fab-twita.component';
 import { FabReplyComponent } from './fab-reply/fab-reply.component';
+import { FavListItemComponent } from './favbar/fav-list-item/fav-list-item.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { FabReplyComponent } from './fab-reply/fab-reply.component';
     MenubarComponent,
     FooterComponent,
     FabTwitaComponent,
-    FabReplyComponent
+    FabReplyComponent,
+    FavListItemComponent
   ],
   imports: [
     CommonModule,

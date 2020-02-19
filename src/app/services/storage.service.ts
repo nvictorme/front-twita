@@ -13,8 +13,8 @@ export class StorageService {
   }
 
   getImageUrl(fileName: string, size: ImageSize = 250): Observable<any> {
-    const splitCover = fileName.split('.');
-    return this.afStorage.ref(`/media/images/${splitCover[0]}_${size}x${size}.${splitCover[1]}`).getDownloadURL();
+    const splitName = fileName.split('.');
+    return this.afStorage.ref(`/media/images/${splitName[0]}_${size}x${size}.${splitName[1]}`).getDownloadURL();
   }
 
   uploadFile(basePath: string, upload: Upload) {
