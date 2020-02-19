@@ -13,7 +13,7 @@ export class FavbarComponent implements OnInit {
 
   favSub: Subscription;
   myFavorites: Favorite[] = [];
-  filtered: Favorite[];
+  filtered: Favorite[] = [];
 
   constructor(private favs: FavoriteService,
               private router: Router) {
@@ -21,7 +21,7 @@ export class FavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.favSub = this.favs.getFavListener().subscribe((favorites: Favorite[]) => {
-      this.myFavorites = favorites;
+      this.myFavorites = favorites ?? [];
       this.filtered = [...favorites];
     });
     this.favs.getFavorites();

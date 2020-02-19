@@ -1,14 +1,12 @@
 import {PostMedia, PostMeta} from './models/interfaces';
 import slugify from 'slugify';
 import * as moment from 'moment';
-import * as firebase from 'firebase';
-import Timestamp = firebase.firestore.Timestamp;
 
 export const initPostMeta = (): PostMeta => {
   return {
     comments: 0,
     shares: 0,
-    stars: 0
+    hearts: 0
   };
 };
 

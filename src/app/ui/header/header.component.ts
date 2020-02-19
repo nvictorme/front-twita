@@ -1,8 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Observable} from 'rxjs';
-import {User} from 'firebase';
 import {AuthService} from '../../services/auth.service';
 import {NbSidebarService} from '@nebular/theme';
+import {UserData} from '../../models/interfaces';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +10,7 @@ import {NbSidebarService} from '@nebular/theme';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
-  user: Observable<User | null> = null;
+  user: UserData;
   barStatus: any = {
     favbar: false,
     menubar: false
@@ -22,7 +21,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.user = this.auth.getUser();
+    this.auth.getUser().subscribe(userData => this.user = userData);
   }
 
   toggleBar(evt: any, barTag: string) {

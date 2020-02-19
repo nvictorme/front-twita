@@ -22,6 +22,7 @@ import {PostCodeFormComponent} from './create-post/post-code-form/post-code-form
 import {PostVideoFormComponent} from './create-post/post-video-form/post-video-form.component';
 import {EmbedVideoService} from '../services/embed-video.service';
 import { PostImageFormComponent } from './create-post/post-image-form/post-image-form.component';
+import { PostActionsComponent } from './post-actions/post-actions.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { PostImageFormComponent } from './create-post/post-image-form/post-image
     PostTextFormComponent,
     PostCodeFormComponent,
     PostVideoFormComponent,
-    PostImageFormComponent
+    PostImageFormComponent,
+    PostActionsComponent
   ],
   exports: [
     PostItemComponent,

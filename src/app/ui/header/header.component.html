@@ -1,9 +1,9 @@
-<div *ngIf="user | async" class="header-actions">
+<div *ngIf="user" class="header-actions">
   <div>&nbsp;</div>
   <div>
     <app-fab-twita></app-fab-twita>
   </div>
   <div (click)="toggleBar($event, 'menubar')" align="right">
-    <nb-user size="medium" [name]="(user | async).displayName" [picture]="(user | async).photoURL"></nb-user>
+    <nb-user size="medium" [name]="(user).displayName" [picture]="(user).photoURL"></nb-user>
   </div>
 </div>

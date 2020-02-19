@@ -1,4 +1,4 @@
-import {AfterViewChecked, Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FavoriteService} from '../../services/favorite.service';
 import {Router} from '@angular/router';
 import {Post, UserData} from '../../models/interfaces';
@@ -14,50 +14,30 @@ import {Observable} from 'rxjs';
   templateUrl: './post-item.component.html',
   styleUrls: ['./post-item.component.scss']
 })
-export class PostItemComponent implements OnInit, AfterViewChecked {
+export class PostItemComponent implements OnInit {
 
   @Input() post: Post;
-  author: Promise<UserData>;
-  isFavorite = false;
-  isShared = false;
-  commentCount: number;
+  @Input() isComment = false;
+  @Input() parentId: string;
+  author: UserData;
   PostTypes = PostTypes;
-  postImage: Observable<any>;
+  postImage: Observable<string>;
   postVideo: HTMLIFrameElement;
 
   constructor(private dbs: DbService,
               private stgs: StorageService,
               private favs: FavoriteService,
-              private evs: EmbedVideoService,
-              private router: Router) {
+              private evs: EmbedVideoService) {
   }
 
-  ngOnInit() {
-    this.author = this.dbs.getUserData(this.post.authorId);
-    this.commentCount = this.post.meta.comments;
+  async ngOnInit() {
+    this.author = await this.dbs.getUserData(this.post.authorId);
     if (this.post.type === PostTypes.Image) {
       this.postImage = this.stgs.getImageUrl(this.post.media.fileName, 500);
     }
     if (this.post.type === PostTypes.Video) {
       this.postVideo = this.embedVideo();
     }
-  }
-
-  ngAfterViewChecked(): void {
-    this.isFavorite = this.favs.isFav(this.post.id);
-  }
-
-  toggleFavorite(evt: any) {
-    this.isFavorite = !this.isFavorite;
-    this.isFavorite ? this.favs.addFav(this.post) : this.favs.removeFav(this.post);
-  }
-
-  toggleShared(evt: any) {
-    this.isShared = !this.isShared;
-  }
-
-  async commentPost() {
-    await this.router.navigateByUrl(`/post/${this.post.id}`);
   }
 
   formatDate() {

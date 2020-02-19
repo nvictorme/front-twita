@@ -14,6 +14,6 @@
     <app-fav-list-item [fav]="fav"></app-fav-list-item>
   </nb-list-item>
 </nb-list>
-<div *ngIf="!filtered.length" align="center">
+<div *ngIf="!filtered.length && myFavorites.length" align="center">
   <b><i>No results matching your keyword</i></b>
 </div>

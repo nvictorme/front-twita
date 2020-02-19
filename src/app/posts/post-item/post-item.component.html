@@ -1,41 +1,29 @@
 <nb-card>
-  <nb-card-header *ngIf="author | async">
-    <nb-user [picture]="(author | async).photoURL || '/assets/icon/apple-icon-152x152.png'"
-             [name]="(author | async).displayName"
-             [title]="(author | async).catchPhrase || ''"></nb-user>
+  <nb-card-header *ngIf="author">
+    <nb-user [picture]="(author).photoURL || '/assets/icon/apple-icon-152x152.png'"
+             [name]="(author).displayName"
+             [title]="(author).catchPhrase || ''"></nb-user>
   </nb-card-header>
-  <nb-card-body (click)="commentPost()">
+  <nb-card-body>
     <b>{{post.title}}</b>
     <br>
     <small style="color: lightgrey;">{{formatDate()}}</small>
     <br>
     {{post.description}}
     <br>
+    <!--    code highlight-->
     <textarea *ngIf="post.type === PostTypes.Code" highlight-js
-              [innerText]="post.media.code">
-    </textarea>
-    <img *ngIf="post.type === PostTypes.Image" width="100%" height="auto" [src]="postImage | async" [alt]="post.title">
-    <span *ngIf="post.type === PostTypes.Video" [innerHTML]="postVideo"></span>
+              [innerText]="post.media.code"></textarea>
+    <!--    post media-->
+    <div align="center">
+      <span *ngIf="post.type === PostTypes.Image">
+        <img *ngIf="postImage | async" width="80%" height="auto" [src]="postImage | async" [alt]="post.title">
+      </span>
+      <span *ngIf="post.type === PostTypes.Video" [innerHTML]="postVideo"></span>
+    </div>
   </nb-card-body>
-  <nb-card-footer *ngIf="author | async">
-    <nb-actions fullWidth>
-      <nb-action>
-        <nb-icon [icon]="isFavorite ? 'star' : 'star-outline'"
-                 [status]="isFavorite ? 'warning' : 'basic'"
-                 (click)="toggleFavorite($event)"></nb-icon>
-      </nb-action>
-      <nb-action>
-        <nb-icon [icon]="isShared ? 'share' : 'share-outline'"
-                 [status]="isShared ? 'success' : 'basic'"
-                 (click)="toggleShared($event)"></nb-icon>
-      </nb-action>
-      <nb-action>
-        <button nbButton status="basic" (click)="commentPost()">
-          <nb-icon icon="message-square-outline" status="info"></nb-icon>
-          {{commentCount}}
-        </button>
-      </nb-action>
-    </nb-actions>
+  <nb-card-footer *ngIf="author">
+      <app-post-actions [post]="post" [isComment]="isComment" [parentId]="parentId"></app-post-actions>
   </nb-card-footer>
   <div class="post-tags">
     <a *ngFor="let tag of post.tags">#{{tag}}</a>

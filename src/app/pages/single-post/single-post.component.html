@@ -1,11 +1,11 @@
-<div class="single-post">
+<div class="single-post" *ngIf="post">
   <section>
-    <app-post-item *ngIf="post" [post]="post"></app-post-item>
+    <app-post-item [post]="post"></app-post-item>
   </section>
-  <section>
-    <nb-list nbInfiniteList [threshold]="500">
+  <section *ngIf="comments.length">
+    <nb-list>
       <nb-list-item *ngFor="let c of comments">
-        <app-post-item style="width: 90%; margin: auto;" [post]="c"></app-post-item>
+        <app-post-item class="post-comment" [post]="c" [isComment]="true" [parentId]="post.id"></app-post-item>
       </nb-list-item>
     </nb-list>
   </section>

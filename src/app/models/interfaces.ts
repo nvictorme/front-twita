@@ -1,6 +1,4 @@
 import {PostTypes} from './enumerations';
-import * as firebase from 'firebase';
-import Timestamp = firebase.firestore.Timestamp;
 
 export interface UserRoles {
   admin: boolean;
@@ -12,7 +10,7 @@ export interface UserMeta {
   posts?: number;
   ups?: number;
   downs?: number;
-  stars?: number;
+  hearts?: number;
 }
 
 export interface UserData {
@@ -38,7 +36,7 @@ export interface PostMedia {
 export interface PostMeta {
   comments?: number;
   shares?: number;
-  stars?: number;
+  hearts?: number;
   ups?: number;
   downs?: number;
 }
@@ -62,4 +60,17 @@ export interface Favorite {
   description: string;
   pid: string;
   uid: string;
+}
+
+export interface ActionState {
+  favorite: boolean;
+  shared: boolean;
+  up: boolean;
+  down: boolean;
+}
+
+export interface Vote {
+  up: boolean;
+  down: boolean;
+  uid?: string;
 }

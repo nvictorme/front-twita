@@ -59,6 +59,12 @@ export class DbService {
     return this.updateAt(path, {[key]: FieldValue.increment(qty)});
   }
 
+  updateMetaCounter(path: string, key: string, qty: number): Promise<any> {
+    return this.updateAt(path, {
+      meta: {[key]: FieldValue.increment(qty)}
+    });
+  }
+
   deleteAt(path) {
     return this.db.doc(path).delete();
   }
