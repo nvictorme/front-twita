@@ -23,6 +23,7 @@ export class PostItemComponent implements OnInit, AfterViewChecked {
   commentCount: number;
   PostTypes = PostTypes;
   postImage: Observable<any>;
+  postVideo: HTMLIFrameElement;
 
   constructor(private dbs: DbService,
               private stgs: StorageService,
@@ -36,6 +37,9 @@ export class PostItemComponent implements OnInit, AfterViewChecked {
     this.commentCount = this.post.meta.comments;
     if (this.post.type === PostTypes.Image) {
       this.postImage = this.stgs.getImageUrl(this.post.media.fileName, 500);
+    }
+    if (this.post.type === PostTypes.Video) {
+      this.postVideo = this.embedVideo();
     }
   }
 
@@ -63,8 +67,8 @@ export class PostItemComponent implements OnInit, AfterViewChecked {
   embedVideo() {
     return this.evs.embed(this.post.media.url, {
       attr: {
-        width: 486,
-        height: 349,
+        width: '100%',
+        height: '400',
       }
     });
   }

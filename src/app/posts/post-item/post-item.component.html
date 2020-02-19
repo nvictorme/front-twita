@@ -15,7 +15,7 @@
               [innerText]="post.media.code">
     </textarea>
     <img *ngIf="post.type === PostTypes.Image" width="100%" height="auto" [src]="postImage | async" [alt]="post.title">
-    <span *ngIf="post.type === PostTypes.Video" [innerHTML]="embedVideo()"></span>
+    <span *ngIf="post.type === PostTypes.Video" [innerHTML]="postVideo"></span>
   </nb-card-body>
   <nb-card-footer *ngIf="author | async">
     <nb-actions fullWidth>
