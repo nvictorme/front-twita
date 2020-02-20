@@ -17,6 +17,7 @@ import { RecentComponent } from './recent/recent.component';
 import {PostsModule} from '../posts/posts.module';
 import { SinglePostComponent } from './single-post/single-post.component';
 import {RouterModule} from '@angular/router';
+import { UserProfilePageComponent } from './user-profile-page/user-profile-page.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {RouterModule} from '@angular/router';
     MyProfileComponent,
     LoginComponent,
     RecentComponent,
-    SinglePostComponent
+    SinglePostComponent,
+    UserProfilePageComponent
   ],
   imports: [
     CommonModule,

@@ -15,7 +15,7 @@ export const environment = {
     measurementId: 'G-1LWSDK596J'
   },
   youtubeUrlPattern: /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})?$/,
-  twitaOptions: [
+  postTabItems: [
     {
       title: 'Text',
       icon: 'file-text-outline'
@@ -31,6 +31,18 @@ export const environment = {
     {
       title: 'Video',
       icon: 'video-outline'
+    }
+  ],
+  menuBarItems: [
+    {
+      title: 'Recent',
+      link: '/recent',
+      icon: 'list-outline'
+    },
+    {
+      title: 'My profile',
+      link: '/my-profile',
+      icon: 'person-outline'
     }
   ]
 };

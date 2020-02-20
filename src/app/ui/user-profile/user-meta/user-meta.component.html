@@ -1,0 +1,10 @@
+<div *ngIf="userMeta" align="center">
+  <nb-card>
+    <nb-card-body class="user-meta-icons">
+      <nb-icon icon="file-text-outline" status="primary"></nb-icon>{{userMeta.posts}}
+      <nb-icon icon="heart-outline" status="danger"></nb-icon>{{userMeta.hearts}}
+      <nb-icon icon="arrow-circle-up-outline" status="success"></nb-icon>{{userMeta.ups}}
+      <nb-icon icon="arrow-circle-down-outline" status="warning"></nb-icon>{{userMeta.downs}}
+    </nb-card-body>
+  </nb-card>
+</div>

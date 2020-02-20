@@ -6,12 +6,12 @@
              fieldSize="large" placeholder="Title">
       <br><br>
       <textarea nbInput fullWidth formControlName="description"
-                placeholder="Description" rows="5"></textarea>
+                placeholder="Description" rows="2"></textarea>
       <br><br>
       <input type="file" accept="image/*" (change)="detectFiles($event)">
       <br>
       <span *ngIf="upload">
-        <img height="250px" [src]="upload.preview" [alt]="upload.name">
+        <img height="100px" [src]="upload.preview" [alt]="upload.name">
         <nb-progress-bar [value]="roundProgress()" [displayValue]="true"></nb-progress-bar>
       </span>
       <br><br>

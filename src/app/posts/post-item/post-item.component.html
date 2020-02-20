@@ -1,5 +1,5 @@
 <nb-card>
-  <nb-card-header *ngIf="author">
+  <nb-card-header *ngIf="author" [routerLink]="'/profile/' + author.uid">
     <nb-user [picture]="(author).photoURL || '/assets/icon/apple-icon-152x152.png'"
              [name]="(author).displayName"
              [title]="(author).catchPhrase || ''"></nb-user>

@@ -8,6 +8,7 @@ import {map} from 'rxjs/operators';
 import {LoginComponent} from './pages/login/login.component';
 import {RecentComponent} from './pages/recent/recent.component';
 import {SinglePostComponent} from './pages/single-post/single-post.component';
+import {UserProfilePageComponent} from './pages/user-profile-page/user-profile-page.component';
 
 const redirectLoggedInToFeed = () => redirectLoggedInTo(['recent']);
 const redirectUnauthorizedToHome = () => redirectUnauthorizedTo(['']);
@@ -40,6 +41,12 @@ const routes: Routes = [
     data: {authGuardPipe: redirectUnauthorizedToHome}
   },
   {
+    path: 'profile/:userId',
+    component: UserProfilePageComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: {authGuardPipe: redirectUnauthorizedToHome}
+  },
+  {
     path: 'my-profile',
     component: MyProfileComponent,
     canActivate: [AngularFireAuthGuard],
@@ -48,7 +55,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    onSameUrlNavigation: 'reload'
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule {

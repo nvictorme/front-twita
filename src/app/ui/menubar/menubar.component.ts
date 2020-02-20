@@ -3,6 +3,7 @@ import {AuthService} from '../../services/auth.service';
 import {Observable} from 'rxjs';
 import {User} from 'firebase';
 import {NbMenuItem, NbSidebarService} from '@nebular/theme';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-menubar',
@@ -16,23 +17,7 @@ export class MenubarComponent implements OnInit, OnDestroy {
     favbar: true,
     menubar: true
   };
-  items: NbMenuItem[] = [
-    {
-      title: 'Feed',
-      link: '/recent',
-      icon: 'list-outline'
-    },
-    {
-      title: 'Favorites',
-      link: '/recent',
-      icon: 'star-outline'
-    },
-    {
-      title: 'Profile',
-      link: '/my-profile',
-      icon: 'person-outline'
-    }
-  ];
+  items: NbMenuItem[] = environment.menuBarItems;
 
   constructor(private sbs: NbSidebarService,
               private auth: AuthService) {

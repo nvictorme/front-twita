@@ -1,0 +1,4 @@
+<div *ngIf="userData" class="user-profile">
+  <app-user-profile-header [userData]="userData"></app-user-profile-header>
+  <app-user-meta [userMeta]="userData.meta"></app-user-meta>
+</div>

@@ -11,7 +11,7 @@ import {CreatePostComponent} from '../../posts/create-post/create-post.component
 })
 export class FabTwitaComponent implements OnInit {
 
-  items: NbMenuItem[] = environment.twitaOptions;
+  items: NbMenuItem[] = environment.postTabItems;
 
   constructor(private menuService: NbMenuService,
               private dialogService: NbDialogService) {

@@ -1,6 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {FavoriteService} from '../../services/favorite.service';
-import {Router} from '@angular/router';
 import {Post, UserData} from '../../models/interfaces';
 import {DbService} from '../../services/db.service';
 import {formatFireDate} from '../../helpers';
@@ -14,7 +13,7 @@ import {Observable} from 'rxjs';
   templateUrl: './post-item.component.html',
   styleUrls: ['./post-item.component.scss']
 })
-export class PostItemComponent implements OnInit {
+export class PostItemComponent implements OnInit, OnChanges {
 
   @Input() post: Post;
   @Input() isComment = false;
@@ -30,7 +29,15 @@ export class PostItemComponent implements OnInit {
               private evs: EmbedVideoService) {
   }
 
-  async ngOnInit() {
+  ngOnInit(): void {
+    this.onLoad();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.onLoad();
+  }
+
+  async onLoad() {
     this.author = await this.dbs.getUserData(this.post.authorId);
     if (this.post.type === PostTypes.Image) {
       this.postImage = this.stgs.getImageUrl(this.post.media.fileName, 500);

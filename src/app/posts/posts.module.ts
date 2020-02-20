@@ -21,8 +21,10 @@ import {HighlightJsModule} from 'ngx-highlight-js';
 import {PostCodeFormComponent} from './create-post/post-code-form/post-code-form.component';
 import {PostVideoFormComponent} from './create-post/post-video-form/post-video-form.component';
 import {EmbedVideoService} from '../services/embed-video.service';
-import { PostImageFormComponent } from './create-post/post-image-form/post-image-form.component';
-import { PostActionsComponent } from './post-actions/post-actions.component';
+import {PostImageFormComponent} from './create-post/post-image-form/post-image-form.component';
+import {PostActionsComponent} from './post-actions/post-actions.component';
+import {RouterModule} from '@angular/router';
+import {UserRecentPostsComponent} from './user-recent-posts/user-recent-posts.component';
 
 
 @NgModule({
@@ -34,12 +36,14 @@ import { PostActionsComponent } from './post-actions/post-actions.component';
     PostCodeFormComponent,
     PostVideoFormComponent,
     PostImageFormComponent,
-    PostActionsComponent
+    PostActionsComponent,
+    UserRecentPostsComponent
   ],
   exports: [
     PostItemComponent,
     PostListComponent,
-    CreatePostComponent
+    CreatePostComponent,
+    UserRecentPostsComponent
   ],
   imports: [
     CommonModule,
@@ -56,7 +60,8 @@ import { PostActionsComponent } from './post-actions/post-actions.component';
     ReactiveFormsModule,
     TagInputModule,
     HighlightJsModule,
-    NbProgressBarModule
+    NbProgressBarModule,
+    RouterModule
   ],
   providers: [
     EmbedVideoService

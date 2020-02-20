@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Observable} from 'rxjs';
+import {User} from 'firebase';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-my-profile',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyProfileComponent implements OnInit {
 
-  constructor() { }
+  user: Observable<User | null>;
+
+  constructor(private auth: AuthService) {
+  }
 
   ngOnInit(): void {
+    this.user = this.auth.getUser();
   }
 
 }

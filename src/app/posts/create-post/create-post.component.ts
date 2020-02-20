@@ -9,7 +9,7 @@ import {environment} from '../../../environments/environment';
 })
 export class CreatePostComponent implements OnInit {
 
-  tabItems: NbMenuItem[] = environment.twitaOptions;
+  tabItems: NbMenuItem[] = environment.postTabItems;
   @Input() isComment = false;
   @Input() postId: string;
 

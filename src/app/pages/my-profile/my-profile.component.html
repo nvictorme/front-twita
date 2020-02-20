@@ -1,1 +1,2 @@
-<p>my-profile works!</p>
+<app-user-profile [userId]="(user | async).uid"></app-user-profile>
+<app-user-recent-posts [userId]="(user | async).uid"></app-user-recent-posts>

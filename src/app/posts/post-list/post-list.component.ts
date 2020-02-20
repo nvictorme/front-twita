@@ -16,8 +16,4 @@ export class PostListComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  loadMore() {
-    this.loading = true;
-  }
 }

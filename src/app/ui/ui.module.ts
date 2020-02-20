@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HeaderComponent} from './header/header.component';
 import {
+  NbActionsModule,
   NbButtonModule,
   NbCardModule, NbContextMenuModule, NbIconModule,
   NbInputModule,
@@ -15,9 +16,12 @@ import {RouterModule} from '@angular/router';
 import {FavbarComponent} from './favbar/favbar.component';
 import {MenubarComponent} from './menubar/menubar.component';
 import {FooterComponent} from './footer/footer.component';
-import { FabTwitaComponent } from './fab-twita/fab-twita.component';
-import { FabReplyComponent } from './fab-reply/fab-reply.component';
-import { FavListItemComponent } from './favbar/fav-list-item/fav-list-item.component';
+import {FabTwitaComponent} from './fab-twita/fab-twita.component';
+import {FabReplyComponent} from './fab-reply/fab-reply.component';
+import {FavListItemComponent} from './favbar/fav-list-item/fav-list-item.component';
+import {UserProfileHeaderComponent} from './user-profile/user-profile-header/user-profile-header.component';
+import {UserProfileComponent} from './user-profile/user-profile.component';
+import {UserMetaComponent} from './user-profile/user-meta/user-meta.component';
 
 
 @NgModule({
@@ -28,7 +32,10 @@ import { FavListItemComponent } from './favbar/fav-list-item/fav-list-item.compo
     FooterComponent,
     FabTwitaComponent,
     FabReplyComponent,
-    FavListItemComponent
+    FavListItemComponent,
+    UserProfileHeaderComponent,
+    UserProfileComponent,
+    UserMetaComponent
   ],
   imports: [
     CommonModule,
@@ -43,7 +50,8 @@ import { FavListItemComponent } from './favbar/fav-list-item/fav-list-item.compo
     NbButtonModule,
     NbIconModule,
     NbUserModule,
-    NbContextMenuModule
+    NbContextMenuModule,
+    NbActionsModule
   ],
   exports: [
     HeaderComponent,
@@ -51,7 +59,8 @@ import { FavListItemComponent } from './favbar/fav-list-item/fav-list-item.compo
     MenubarComponent,
     FooterComponent,
     FabTwitaComponent,
-    FabReplyComponent
+    FabReplyComponent,
+    UserProfileComponent
   ]
 })
 export class UiModule {

@@ -1,6 +1,5 @@
-import {ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Post} from '../../models/interfaces';
-import * as moment from 'moment';
 import {DbService} from '../../services/db.service';
 import {ActivatedRoute} from '@angular/router';
 import {formatFireDate} from '../../helpers';
@@ -9,7 +8,7 @@ import {Subscription} from 'rxjs';
 @Component({
   selector: 'app-single-post',
   templateUrl: './single-post.component.html',
-  styleUrls: ['./single-post.component.scss'],
+  styleUrls: ['./single-post.component.scss']
   // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SinglePostComponent implements OnInit, OnDestroy {
