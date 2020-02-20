@@ -6,7 +6,9 @@ export const initPostMeta = (): PostMeta => {
   return {
     comments: 0,
     shares: 0,
-    hearts: 0
+    hearts: 0,
+    ups: 0,
+    downs: 0
   };
 };
 
