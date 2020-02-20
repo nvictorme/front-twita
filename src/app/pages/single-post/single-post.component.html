@@ -1,4 +1,4 @@
-<div class="single-post" *ngIf="post">
+<div class="single-post" *ngIf="post != null; else postDeleted">
   <section>
     <app-post-item [post]="post"></app-post-item>
   </section>
@@ -21,3 +21,8 @@
   </div>
   <!--  <app-fab-reply (click)="toggleReplyBox()"></app-fab-reply>-->
 </div>
+<ng-template #postDeleted>
+  <div class="single-post" align="center">
+    <h2>Post deleted by the author</h2>
+  </div>
+</ng-template>

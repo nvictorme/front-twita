@@ -4,6 +4,7 @@ import {DbService} from '../../services/db.service';
 import {ActivatedRoute} from '@angular/router';
 import {formatFireDate} from '../../helpers';
 import {Subscription} from 'rxjs';
+import {FavoriteService} from '../../services/favorite.service';
 
 @Component({
   selector: 'app-single-post',
@@ -16,32 +17,32 @@ export class SinglePostComponent implements OnInit, OnDestroy {
   post: Post;
   commentsSub: Subscription;
   comments: Post[] = [];
+
   // @ViewChild('replyBox', {static: false}) replyBox;
 
   constructor(private dbs: DbService,
+              private favs: FavoriteService,
               private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this.dbs.getSinglePost(params.postId).then(post => {
-        this.post = post;
-        this.commentsSub = this.dbs.collection$(`posts/${this.post.id}/comments`)
-          .subscribe(comments => this.comments = comments);
-      });
+      this.dbs.getSinglePost(params.postId).then((post: Post) => {
+        if (post.description) {
+          this.post = post;
+          this.commentsSub = this.dbs.collection$(`posts/${this.post.id}/comments`)
+            .subscribe(comments => this.comments = comments);
+        } else {
+          this.post = null;
+          this.favs.removeFav(post);
+        }
+      })
+        .catch(error => console.error(error.message));
     });
   }
 
-  toggleReplyBox() {
-    // this.replyBox.toggle();
-  }
-
-  formatDate() {
-    return formatFireDate(this.post.createdAt);
-  }
-
   ngOnDestroy(): void {
-    this.commentsSub.unsubscribe();
+    this.commentsSub?.unsubscribe();
   }
 
 }
