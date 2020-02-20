@@ -53,7 +53,7 @@ export class FavoriteService {
       if (isComment) {
         votePath = `posts/${parentId}/comments/${post.id}/votes/${uid}`;
       }
-      const voteData = {...vote, uid};
+      const voteData = {...vote, uid, authorId: post.authorId};
       localStorage.setItem(votePath, JSON.stringify(voteData));
       this.dbs.updateAt(votePath, voteData);
     });
