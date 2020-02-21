@@ -1,11 +1,12 @@
 <div *ngIf="userData">
   <nb-card>
-    <nb-card-body>
+    <nb-card-body class="user-header-content">
       <nb-user size="large"
                [name]="userData.displayName"
                [title]="userData.catchPhrase"
                [picture]="userData.photoURL">
       </nb-user>
+      <app-user-performance-gauge [userData]="userData"></app-user-performance-gauge>
     </nb-card-body>
   </nb-card>
 </div>

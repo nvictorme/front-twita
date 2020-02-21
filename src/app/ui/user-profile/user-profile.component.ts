@@ -17,8 +17,8 @@ export class UserProfileComponent implements OnInit {
               private dbs: DbService) {
   }
 
-  async ngOnInit() {
-    this.userData = await this.dbs.getUserData(this.userId);
+  ngOnInit() {
+    this.dbs.doc$(`users/${this.userId}`).subscribe(userData => this.userData = userData);
   }
 
 }
