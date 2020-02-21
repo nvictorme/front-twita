@@ -22,6 +22,8 @@ import {FavListItemComponent} from './favbar/fav-list-item/fav-list-item.compone
 import {UserProfileHeaderComponent} from './user-profile/user-profile-header/user-profile-header.component';
 import {UserProfileComponent} from './user-profile/user-profile.component';
 import {UserMetaComponent} from './user-profile/user-meta/user-meta.component';
+import {GaugeChartModule} from 'angular-gauge-chart';
+import { UserPerformanceGaugeComponent } from './user-profile/user-performance-gauge/user-performance-gauge.component';
 
 
 @NgModule({
@@ -35,25 +37,27 @@ import {UserMetaComponent} from './user-profile/user-meta/user-meta.component';
     FavListItemComponent,
     UserProfileHeaderComponent,
     UserProfileComponent,
-    UserMetaComponent
+    UserMetaComponent,
+    UserPerformanceGaugeComponent
   ],
-    imports: [
-        CommonModule,
-        NbLayoutModule,
-        NbToggleModule,
-        RouterModule,
-        NbSidebarModule.forRoot(),
-        NbMenuModule.forRoot(),
-        NbCardModule,
-        NbListModule,
-        NbInputModule,
-        NbButtonModule,
-        NbIconModule,
-        NbUserModule,
-        NbContextMenuModule,
-        NbActionsModule,
-        NbPopoverModule
-    ],
+  imports: [
+    CommonModule,
+    NbLayoutModule,
+    NbToggleModule,
+    RouterModule,
+    NbSidebarModule.forRoot(),
+    NbMenuModule.forRoot(),
+    NbCardModule,
+    NbListModule,
+    NbInputModule,
+    NbButtonModule,
+    NbIconModule,
+    NbUserModule,
+    NbContextMenuModule,
+    NbActionsModule,
+    NbPopoverModule,
+    GaugeChartModule
+  ],
   exports: [
     HeaderComponent,
     FavbarComponent,

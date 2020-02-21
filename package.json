@@ -24,6 +24,7 @@
     "@angular/router": "~9.0.1",
     "@nebular/eva-icons": "4.6.0",
     "@nebular/theme": "^4.6.0",
+    "angular-gauge-chart": "^0.7.2",
     "eva-icons": "^1.1.2",
     "firebase": ">= 5.5.7 <8",
     "lodash": "^4.17.15",
