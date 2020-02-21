@@ -7,6 +7,7 @@ import {EmbedVideoService} from '../../services/embed-video.service';
 import {PostTypes} from '../../models/enumerations';
 import {StorageService} from '../../services/storage.service';
 import {Observable} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-post-item',
@@ -26,7 +27,8 @@ export class PostItemComponent implements OnInit, OnChanges {
   constructor(private dbs: DbService,
               private stgs: StorageService,
               private favs: FavoriteService,
-              private evs: EmbedVideoService) {
+              private evs: EmbedVideoService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -58,6 +60,10 @@ export class PostItemComponent implements OnInit, OnChanges {
         height: '400',
       }
     });
+  }
+
+  goToTag(tag: string) {
+    this.router.navigate(['tag', tag]);
   }
 
 }

@@ -16,11 +16,9 @@ export class UserRecentPostsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.userId);
     this.dbs.collection$('posts', ref => ref.where('authorId', '==', this.userId)
       .orderBy('createdAt', 'desc'))
       .subscribe((posts: Post[]) => {
-        console.log(posts);
         this.posts = posts;
       });
   }

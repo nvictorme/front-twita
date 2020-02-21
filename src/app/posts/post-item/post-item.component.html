@@ -26,7 +26,7 @@
       <app-post-actions [post]="post" [isComment]="isComment" [parentId]="parentId"></app-post-actions>
   </nb-card-footer>
   <div class="post-tags">
-    <a *ngFor="let tag of post.tags">#{{tag}}</a>
+    <a *ngFor="let tag of post.tags" (click)="goToTag(tag)">#{{tag}}</a>
   </div>
   <br>
 </nb-card>

@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {MyProfileComponent} from './my-profile/my-profile.component';
 import {
   NbAccordionModule,
-  NbActionsModule,
+  NbActionsModule, NbAlertModule,
   NbButtonModule,
   NbCardModule,
   NbIconModule,
@@ -18,6 +18,7 @@ import {PostsModule} from '../posts/posts.module';
 import { SinglePostComponent } from './single-post/single-post.component';
 import {RouterModule} from '@angular/router';
 import { UserProfilePageComponent } from './user-profile-page/user-profile-page.component';
+import { TagPageComponent } from './tag-page/tag-page.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { UserProfilePageComponent } from './user-profile-page/user-profile-page.
     LoginComponent,
     RecentComponent,
     SinglePostComponent,
-    UserProfilePageComponent
+    UserProfilePageComponent,
+    TagPageComponent
   ],
   imports: [
     CommonModule,
@@ -40,7 +42,8 @@ import { UserProfilePageComponent } from './user-profile-page/user-profile-page.
     PostsModule,
     NbActionsModule,
     NbAccordionModule,
-    RouterModule
+    RouterModule,
+    NbAlertModule
   ],
   exports: [
     MyProfileComponent,

@@ -9,6 +9,7 @@ import {LoginComponent} from './pages/login/login.component';
 import {RecentComponent} from './pages/recent/recent.component';
 import {SinglePostComponent} from './pages/single-post/single-post.component';
 import {UserProfilePageComponent} from './pages/user-profile-page/user-profile-page.component';
+import {TagPageComponent} from './pages/tag-page/tag-page.component';
 
 const redirectLoggedInToFeed = () => redirectLoggedInTo(['recent']);
 const redirectUnauthorizedToHome = () => redirectUnauthorizedTo(['']);
@@ -37,6 +38,12 @@ const routes: Routes = [
   {
     path: 'post/:postId',
     component: SinglePostComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: {authGuardPipe: redirectUnauthorizedToHome}
+  },
+  {
+    path: 'tag/:tag',
+    component: TagPageComponent,
     canActivate: [AngularFireAuthGuard],
     data: {authGuardPipe: redirectUnauthorizedToHome}
   },

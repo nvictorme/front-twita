@@ -1,10 +1,22 @@
 <div *ngIf="userMeta" align="center">
   <nb-card>
     <nb-card-body class="user-meta-icons">
-      <nb-icon icon="file-text-outline" status="primary"></nb-icon>{{userMeta.posts}}
-      <nb-icon icon="heart-outline" status="danger"></nb-icon>{{userMeta.hearts}}
-      <nb-icon icon="arrow-circle-up-outline" status="success"></nb-icon>{{userMeta.ups}}
-      <nb-icon icon="arrow-circle-down-outline" status="warning"></nb-icon>{{userMeta.downs}}
+      <span class="meta-icon" nbPopover="Posts you've published"
+            nbPopoverTrigger="hint" nbPopoverPlacement="bottom">
+        <nb-icon icon="file-text-outline" status="primary"></nb-icon>{{userMeta.posts}}<br><small>posts</small>
+      </span>
+      <span class="meta-icon" nbPopover="number of times your posts have been bookmarked"
+            nbPopoverTrigger="hint" nbPopoverPlacement="bottom">
+        <nb-icon icon="heart" status="danger"></nb-icon>{{userMeta.hearts}}<br><small>hearts</small>
+      </span>
+      <span class="meta-icon" nbPopover="total up-votes on your posts and comments"
+            nbPopoverTrigger="hint" nbPopoverPlacement="bottom">
+        <nb-icon icon="arrow-circle-up" status="success"></nb-icon>{{userMeta.ups}}<br><small>ups</small>
+      </span>
+      <span class="meta-icon" nbPopover="total down-votes on your posts and comments"
+            nbPopoverTrigger="hint" nbPopoverPlacement="bottom">
+        <nb-icon icon="arrow-circle-down" status="warning"></nb-icon>{{userMeta.downs}}<br><small>downs</small>
+      </span>
     </nb-card-body>
   </nb-card>
 </div>
