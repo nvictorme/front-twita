@@ -11,7 +11,8 @@
       <input type="text" nbInput fullWidth formControlName="url"
              fieldSize="large" placeholder="e.g.: https://www.youtube.com/watch?v=TTAU7lLDZYU">
       <br><br>
-      <tag-input *ngIf="!isComment" formControlName="tags" nbInput maxItems="5" [separatorKeyCodes]="[32]"></tag-input>
+      <tag-input *ngIf="!isComment" formControlName="tags" nbInput maxItems="5" [separatorKeyCodes]="[32]"
+                 [blinkIfDupe]="true" [allowDupes]="false"></tag-input>
       <br>
       <div align="center">
         <button nbButton status="primary" type="submit" [disabled]="textForm.invalid">

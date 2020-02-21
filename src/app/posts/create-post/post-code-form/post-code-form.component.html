@@ -11,7 +11,8 @@
       <textarea nbInput fullWidth formControlName="code"
                 placeholder="Paste your code here" rows="10"></textarea>
       <br><br>
-      <tag-input *ngIf="!isComment" formControlName="tags" nbInput maxItems="5" [separatorKeyCodes]="[32]"></tag-input>
+      <tag-input *ngIf="!isComment" formControlName="tags" nbInput maxItems="5" [separatorKeyCodes]="[32]"
+                 [blinkIfDupe]="true" [allowDupes]="false"></tag-input>
       <br>
       <div align="center">
         <button nbButton status="primary" type="submit" [disabled]="codeForm.invalid">
