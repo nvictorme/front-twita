@@ -2,20 +2,20 @@
   <nb-action *ngIf="!isComment">
     <nb-icon [icon]="actionState.favorite ? 'heart' : 'heart-outline'"
              [status]="actionState.favorite ? 'danger' : 'basic'"
-             (click)="toggleFavorite($event)"></nb-icon>
+             (click)="toggleFavorite($event)" class="clickable"></nb-icon>
   </nb-action>
   <nb-action>
     <nb-icon [icon]="actionState.down ? 'arrow-circle-down' : 'arrow-circle-down-outline'"
              [status]="actionState.down ? 'warning' : 'basic'"
-             (click)="toggleDown($event)"></nb-icon>
+             (click)="toggleDown($event)" class="clickable"></nb-icon>
   </nb-action>
   <nb-action>
     <nb-icon [icon]="actionState.up ? 'arrow-circle-up' : 'arrow-circle-up-outline'"
              [status]="actionState.up ? 'success' : 'basic'"
-             (click)="toggleUp($event)"></nb-icon>
+             (click)="toggleUp($event)" class="clickable"></nb-icon>
   </nb-action>
   <nb-action *ngIf="!isComment">
-    <button nbButton status="basic" (click)="commentPost()">
+    <button nbButton status="basic" (click)="commentPost()" class="clickable">
       <nb-icon icon="message-square-outline" status="info"></nb-icon>
       {{commentCount}}
     </button>
