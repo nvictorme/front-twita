@@ -1,0 +1,29 @@
+<nb-card>
+  <nb-card-header>
+    Report a problem
+  </nb-card-header>
+  <nb-card-body>
+    <form [formGroup]="flagForm" (submit)="onFlagSubmit()">
+      Select all that apply and leave a comment:
+      <br>
+      <div class="flag-checks">
+        <nb-checkbox formControlName="nudity">Nudity</nb-checkbox>
+        <nb-checkbox formControlName="violence">Violence</nb-checkbox>
+        <nb-checkbox formControlName="harassment">Harassment</nb-checkbox>
+        <nb-checkbox formControlName="sucideOrSelfInjury">Suicide or self-injury</nb-checkbox>
+        <nb-checkbox formControlName="fakeNews">Fake news</nb-checkbox>
+        <nb-checkbox formControlName="spam">Spam</nb-checkbox>
+        <nb-checkbox formControlName="intellectualProperty">Intellectual property</nb-checkbox>
+        <nb-checkbox formControlName="unauthorizedSales">Unauthorized sales</nb-checkbox>
+        <nb-checkbox formControlName="hateSpeech">Hate speech</nb-checkbox>
+        <nb-checkbox formControlName="terrorism">Terrorism</nb-checkbox>
+        <nb-checkbox formControlName="propaganda">Propaganda</nb-checkbox>
+        <nb-checkbox formControlName="other">Other</nb-checkbox>
+      </div>
+      <br>
+      <textarea nbInput rows="3" formControlName="comment" placeholder="Enter your comment here..."></textarea>
+      <br>
+      <button nbButton status="info" type="submit" [disabled]="flagForm.invalid">Send</button>
+    </form>
+  </nb-card-body>
+</nb-card>

@@ -38,6 +38,7 @@ import {PostsModule} from './posts/posts.module';
 import {AuthService} from './services/auth.service';
 import {DbService} from './services/db.service';
 import {StorageService} from './services/storage.service';
+import {AngularFireFunctionsModule} from '@angular/fire/functions';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import {StorageService} from './services/storage.service';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFireAuthGuardModule,
+    AngularFireFunctionsModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireAnalyticsModule,

@@ -5,7 +5,7 @@ import {PostItemComponent} from './post-item/post-item.component';
 import {
   NbActionsModule,
   NbButtonModule,
-  NbCardModule,
+  NbCardModule, NbCheckboxModule,
   NbIconModule, NbInputModule,
   NbListModule, NbProgressBarModule,
   NbSpinnerModule,
@@ -25,6 +25,9 @@ import {PostImageFormComponent} from './create-post/post-image-form/post-image-f
 import {PostActionsComponent} from './post-actions/post-actions.component';
 import {RouterModule} from '@angular/router';
 import {UserRecentPostsComponent} from './user-recent-posts/user-recent-posts.component';
+import {PostFlagDeleteComponent} from './post-flag-delete/post-flag-delete.component';
+import {PostDeletePromptComponent} from './post-flag-delete/post-delete-prompt/post-delete-prompt.component';
+import {PostFlagPromptComponent} from './post-flag-delete/post-flag-prompt/post-flag-prompt.component';
 
 
 @NgModule({
@@ -37,7 +40,10 @@ import {UserRecentPostsComponent} from './user-recent-posts/user-recent-posts.co
     PostVideoFormComponent,
     PostImageFormComponent,
     PostActionsComponent,
-    UserRecentPostsComponent
+    UserRecentPostsComponent,
+    PostFlagDeleteComponent,
+    PostDeletePromptComponent,
+    PostFlagPromptComponent
   ],
   exports: [
     PostItemComponent,
@@ -61,7 +67,8 @@ import {UserRecentPostsComponent} from './user-recent-posts/user-recent-posts.co
     TagInputModule,
     HighlightJsModule,
     NbProgressBarModule,
-    RouterModule
+    RouterModule,
+    NbCheckboxModule
   ],
   providers: [
     EmbedVideoService
