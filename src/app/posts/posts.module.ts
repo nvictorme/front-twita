@@ -25,6 +25,8 @@ import {PostImageFormComponent} from './create-post/post-image-form/post-image-f
 import {PostActionsComponent} from './post-actions/post-actions.component';
 import {RouterModule} from '@angular/router';
 import {UserRecentPostsComponent} from './user-recent-posts/user-recent-posts.component';
+import { PostFlagDeleteComponent } from './post-flag-delete/post-flag-delete.component';
+import { PostDeletePromptComponent } from './post-flag-delete/post-delete-prompt/post-delete-prompt.component';
 
 
 @NgModule({
@@ -37,7 +39,9 @@ import {UserRecentPostsComponent} from './user-recent-posts/user-recent-posts.co
     PostVideoFormComponent,
     PostImageFormComponent,
     PostActionsComponent,
-    UserRecentPostsComponent
+    UserRecentPostsComponent,
+    PostFlagDeleteComponent,
+    PostDeletePromptComponent
   ],
   exports: [
     PostItemComponent,

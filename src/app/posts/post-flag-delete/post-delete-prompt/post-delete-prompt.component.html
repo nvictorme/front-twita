@@ -1,0 +1,20 @@
+<nb-card>
+  <nb-card-header>
+    Are you sure?
+  </nb-card-header>
+  <nb-card-body>
+    This can't be undone.<br>
+    The votes you received<br>
+    will still be available anyway.
+  </nb-card-body>
+  <nb-card-footer>
+    <nb-actions>
+      <nb-action>
+        <button nbButton outline status="success" size="small" (click)="onDelete('yes')">yes, delete it</button>
+      </nb-action>
+      <nb-action>
+        <button nbButton status="danger" size="medium" (click)="onDelete('no')">NO</button>
+      </nb-action>
+    </nb-actions>
+  </nb-card-footer>
+</nb-card>

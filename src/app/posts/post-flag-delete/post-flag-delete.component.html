@@ -1,0 +1,12 @@
+<nb-actions *ngIf="user | async">
+  <nb-action *ngIf="(user | async).uid !== authorId">
+    <button nbButton outline status="warning" size="tiny">
+      <nb-icon icon="flag-outline" status="warning"></nb-icon>
+    </button>
+  </nb-action>
+  <nb-action *ngIf="(user | async).uid === authorId">
+    <button nbButton outline status="danger" size="tiny" (click)="onDeleteClick()">
+      <nb-icon icon="trash-outline" status="danger"></nb-icon>
+    </button>
+  </nb-action>
+</nb-actions>

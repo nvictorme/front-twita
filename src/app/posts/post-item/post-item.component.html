@@ -1,8 +1,9 @@
 <nb-card>
-  <nb-card-header *ngIf="author" [routerLink]="'/profile/' + author.uid" class="clickable">
+  <nb-card-header *ngIf="author" class="post-item-header">
     <nb-user [picture]="(author).photoURL || '/assets/icon/apple-icon-152x152.png'"
-             [name]="(author).displayName"
-             [title]="(author).catchPhrase || ''"></nb-user>
+             [name]="(author).displayName" [routerLink]="'/profile/' + author.uid"
+             [title]="(author).catchPhrase || ''" class="clickable"></nb-user>
+    <app-post-flag-delete [authorId]="author.uid" [postId]="post.id"></app-post-flag-delete>
   </nb-card-header>
   <nb-card-body>
     <b>{{post.title}}</b>
@@ -23,7 +24,7 @@
     </div>
   </nb-card-body>
   <nb-card-footer *ngIf="author">
-      <app-post-actions [post]="post" [isComment]="isComment" [parentId]="parentId"></app-post-actions>
+    <app-post-actions [post]="post" [isComment]="isComment" [parentId]="parentId"></app-post-actions>
   </nb-card-footer>
   <div class="post-tags">
     <a class="clickable" *ngFor="let tag of post.tags" (click)="goToTag(tag)">#{{tag}}</a>
