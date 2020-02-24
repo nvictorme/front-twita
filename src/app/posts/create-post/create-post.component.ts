@@ -13,7 +13,8 @@ export class CreatePostComponent implements OnInit {
   @Input() isComment = false;
   @Input() postId: string;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

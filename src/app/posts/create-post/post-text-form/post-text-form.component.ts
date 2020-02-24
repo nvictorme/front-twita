@@ -7,7 +7,7 @@ import {AuthService} from '../../../services/auth.service';
 import {DbService} from '../../../services/db.service';
 import {PostTypes} from '../../../models/enumerations';
 import {initPostMeta, parseTags} from '../../../helpers';
-import {NbGlobalPhysicalPosition, NbToastrService} from '@nebular/theme';
+import {NbDialogRef, NbGlobalPhysicalPosition, NbToastrService} from '@nebular/theme';
 
 @Component({
   selector: 'app-post-text-form',
@@ -23,7 +23,8 @@ export class PostTextFormComponent implements OnInit {
 
   constructor(private auth: AuthService,
               private dbs: DbService,
-              private toasty: NbToastrService) {
+              private toasty: NbToastrService,
+              private dialogRef: NbDialogRef<any>) {
   }
 
   ngOnInit(): void {
@@ -75,7 +76,7 @@ export class PostTextFormComponent implements OnInit {
               status: 'danger'
             });
           })
-          .finally(() => this.initTextForm());
+          .finally(() => this.dialogRef.close());
       });
     } catch (e) {
       console.error(e.message);

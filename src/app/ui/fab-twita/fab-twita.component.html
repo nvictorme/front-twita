@@ -1,10 +1,5 @@
 <button nbButton shape="rectangle"
         size="large" status="primary" (click)="openTwitaDialog()">
   <nb-icon icon="plus-square-outline"></nb-icon>
-  Publish
+  {{isComment ? 'Comment' : 'Publish'}}
 </button>
-<!--<button class="fab-twita" nbButton shape="rectangle"-->
-<!--        size="giant" status="primary" [nbContextMenu]="items" nbContextMenuTag="fab-twita-menu">-->
-<!--  <nb-icon icon="plus-square-outline"></nb-icon>-->
-<!--  Twita-->
-<!--</button>-->

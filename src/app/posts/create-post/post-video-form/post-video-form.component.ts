@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 import {User} from 'firebase';
 import {AuthService} from '../../../services/auth.service';
 import {DbService} from '../../../services/db.service';
-import {NbGlobalPhysicalPosition, NbToastrService} from '@nebular/theme';
+import {NbDialogRef, NbGlobalPhysicalPosition, NbToastrService} from '@nebular/theme';
 import {Post} from '../../../models/interfaces';
 import {initPostMedia, initPostMeta, parseTags} from '../../../helpers';
 import {PostTypes} from '../../../models/enumerations';
@@ -24,7 +24,8 @@ export class PostVideoFormComponent implements OnInit {
 
   constructor(private auth: AuthService,
               private dbs: DbService,
-              private toasty: NbToastrService) {
+              private toasty: NbToastrService,
+              private dialogRef: NbDialogRef<any>) {
   }
 
   ngOnInit(): void {
@@ -84,7 +85,7 @@ export class PostVideoFormComponent implements OnInit {
               status: 'danger'
             });
           })
-          .finally(() => this.initTextForm());
+          .finally(() => this.dialogRef.close());
       });
     } catch (e) {
       console.error(e.message);

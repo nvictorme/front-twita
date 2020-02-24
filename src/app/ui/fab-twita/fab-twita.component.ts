@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {NbDialogService, NbMenuItem, NbMenuService} from '@nebular/theme';
+import {NbDialogService, NbMenuItem} from '@nebular/theme';
 import {environment} from '../../../environments/environment';
-import {filter, map} from 'rxjs/operators';
+import {filter} from 'rxjs/operators';
 import {CreatePostComponent} from '../../posts/create-post/create-post.component';
+import {NavigationEnd, Router, RouterEvent} from '@angular/router';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-fab-twita',
@@ -12,12 +14,26 @@ import {CreatePostComponent} from '../../posts/create-post/create-post.component
 export class FabTwitaComponent implements OnInit {
 
   items: NbMenuItem[] = environment.postTabItems;
+  urlSub: Subscription;
+  isComment = false;
+  postId: string;
 
-  constructor(private menuService: NbMenuService,
-              private dialogService: NbDialogService) {
+  constructor(private dialogService: NbDialogService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
+    this.urlSub = this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event: RouterEvent) => {
+        if (event.url.includes('post/')) {
+          this.isComment = true;
+          this.postId = event.url.split('/').pop();
+        } else {
+          this.isComment = false;
+          this.postId = undefined;
+        }
+      });
   }
 
   openTwitaDialog() {
@@ -27,19 +43,11 @@ export class FabTwitaComponent implements OnInit {
       closeOnEsc: true,
       hasBackdrop: true,
       hasScroll: false,
-      context: {}
+      context: {
+        isComment: this.isComment,
+        postId: this.postId
+      }
     });
-  }
-
-  registerMenuService() {
-    this.menuService.onItemClick()
-      .pipe(
-        filter(({tag}) => tag === 'fab-twita-menu'),
-        map(({item: {title}}) => title),
-      )
-      .subscribe(title => {
-        console.log(`${title} was clicked!`);
-      });
   }
 
 }

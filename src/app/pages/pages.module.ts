@@ -5,7 +5,7 @@ import {
   NbAccordionModule,
   NbActionsModule, NbAlertModule,
   NbButtonModule,
-  NbCardModule,
+  NbCardModule, NbDialogModule, NbDialogRef, NbDialogService,
   NbIconModule,
   NbLayoutModule,
   NbListModule,
@@ -13,12 +13,12 @@ import {
 } from '@nebular/theme';
 import {UiModule} from '../ui/ui.module';
 import {LoginComponent} from './login/login.component';
-import { RecentComponent } from './recent/recent.component';
+import {RecentComponent} from './recent/recent.component';
 import {PostsModule} from '../posts/posts.module';
-import { SinglePostComponent } from './single-post/single-post.component';
+import {SinglePostComponent} from './single-post/single-post.component';
 import {RouterModule} from '@angular/router';
-import { UserProfilePageComponent } from './user-profile-page/user-profile-page.component';
-import { TagPageComponent } from './tag-page/tag-page.component';
+import {UserProfilePageComponent} from './user-profile-page/user-profile-page.component';
+import {TagPageComponent} from './tag-page/tag-page.component';
 
 
 @NgModule({
@@ -43,7 +43,7 @@ import { TagPageComponent } from './tag-page/tag-page.component';
     NbActionsModule,
     NbAccordionModule,
     RouterModule,
-    NbAlertModule
+    NbAlertModule,
   ],
   exports: [
     MyProfileComponent,
