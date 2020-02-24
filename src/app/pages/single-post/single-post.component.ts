@@ -30,7 +30,7 @@ export class SinglePostComponent implements OnInit, OnDestroy {
       this.dbs.getSinglePost(params.postId).then((post: Post) => {
         if (post.description) {
           this.post = post;
-          this.commentsSub = this.dbs.collection$(`posts/${this.post.id}/comments`)
+          this.commentsSub = this.dbs.collection$(`posts/${this.post.id}/comments`, ref => ref.orderBy('meta.ups', 'desc').limit(500))
             .subscribe(comments => this.comments = comments);
         } else {
           this.post = null;
