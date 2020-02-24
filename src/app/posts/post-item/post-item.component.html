@@ -3,7 +3,9 @@
     <nb-user [picture]="(author).photoURL || '/assets/icon/apple-icon-152x152.png'"
              [name]="(author).displayName" [routerLink]="'/profile/' + author.uid"
              [title]="(author).catchPhrase || ''" class="clickable"></nb-user>
-    <app-post-flag-delete [authorId]="author.uid" [postId]="post.id"></app-post-flag-delete>
+    <app-post-flag-delete [authorId]="author.uid" [postId]="post.id"
+                          [isComment]="isComment" [parentId]="parentId">
+    </app-post-flag-delete>
   </nb-card-header>
   <nb-card-body>
     <b>{{post.title}}</b>

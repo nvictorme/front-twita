@@ -1,6 +1,6 @@
 <nb-actions *ngIf="user | async">
   <nb-action *ngIf="(user | async).uid !== authorId">
-    <button nbButton outline status="warning" size="tiny">
+    <button nbButton outline status="warning" size="tiny" (click)="onFlagClick()">
       <nb-icon icon="flag-outline" status="warning"></nb-icon>
     </button>
   </nb-action>
