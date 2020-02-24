@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {NbDialogService, NbMenuItem} from '@nebular/theme';
-import {environment} from '../../../environments/environment';
 import {filter} from 'rxjs/operators';
 import {CreatePostComponent} from '../../posts/create-post/create-post.component';
-import {NavigationEnd, Router, RouterEvent} from '@angular/router';
+import {ActivatedRoute, NavigationEnd, Router, RouterEvent} from '@angular/router';
 import {Subscription} from 'rxjs';
 
 @Component({
@@ -13,7 +12,6 @@ import {Subscription} from 'rxjs';
 })
 export class FabTwitaComponent implements OnInit {
 
-  items: NbMenuItem[] = environment.postTabItems;
   urlSub: Subscription;
   isComment = false;
   postId: string;
@@ -23,17 +21,22 @@ export class FabTwitaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.propsFromPath(this.router.url);
     this.urlSub = this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe((event: RouterEvent) => {
-        if (event.url.includes('post/')) {
-          this.isComment = true;
-          this.postId = event.url.split('/').pop();
-        } else {
-          this.isComment = false;
-          this.postId = undefined;
-        }
+        this.propsFromPath(event.url);
       });
+  }
+
+  propsFromPath(path: string) {
+    if (path.includes('post/')) {
+      this.isComment = true;
+      this.postId = path.split('/').pop();
+    } else {
+      this.isComment = false;
+      this.postId = undefined;
+    }
   }
 
   openTwitaDialog() {

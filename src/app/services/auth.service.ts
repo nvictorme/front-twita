@@ -47,7 +47,7 @@ export class AuthService {
   login(authProvider: AuthProviders) {
     this.afAuth.auth.signInWithPopup(this.getAuthProvider(authProvider))
       .then(authResult => {
-        this.router.navigate(['recent']).then(() => {
+        this.router.navigateByUrl('/recent').then(() => {
           this.toasty.show(`Welcome back!`, undefined, {
             duration: 2000,
             position: NbGlobalPhysicalPosition.TOP_RIGHT,
@@ -66,7 +66,9 @@ export class AuthService {
   logout() {
     this.afAuth.auth.signOut().then(() => {
       this.user.subscribe(cUser => {
-        this.router.navigate(['']);
+        this.router.navigateByUrl('/').then(() => {
+          location.reload();
+        });
       });
     });
   }

@@ -20,7 +20,7 @@ export class PostFlagDeleteComponent implements OnInit {
   @Input() postId: string;
   @Input() isComment: boolean;
   @Input() parentId: string;
-  user: Observable<User | null>;
+  user: User;
 
   constructor(private auth: AuthService,
               private aff: AngularFireFunctions,
@@ -29,7 +29,7 @@ export class PostFlagDeleteComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.user = this.auth.getUser();
+    this.auth.getUser().subscribe(user => this.user = user);
   }
 
   onDeleteClick() {

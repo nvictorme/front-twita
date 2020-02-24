@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {NbSidebarService} from '@nebular/theme';
-import {UserData} from '../../models/interfaces';
+import {User} from 'firebase';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +10,7 @@ import {UserData} from '../../models/interfaces';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 
-  user: UserData;
+  user: User;
   barStatus: any = {
     favbar: false,
     menubar: false
