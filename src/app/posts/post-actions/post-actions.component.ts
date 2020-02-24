@@ -19,14 +19,12 @@ export class PostActionsComponent implements OnInit {
     up: false,
     down: false
   };
-  commentCount: number;
 
   constructor(private favs: FavoriteService,
               private router: Router) {
   }
 
   ngOnInit(): void {
-    this.commentCount = this.post.meta.comments;
     this.actionState.favorite = this.favs.isFav(this.post.id);
     this.favs.getVote(this.post, this.isComment, this.parentId).then(myVote => {
       this.actionState.up = myVote.up;
