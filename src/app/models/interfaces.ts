@@ -19,6 +19,7 @@ export interface UserData {
   country?: string;
   displayName: string;
   email: string;
+  fcmTokens?: string[];
   firstName?: string;
   lastName?: string;
   phoneNumber?: string;
