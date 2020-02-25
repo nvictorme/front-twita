@@ -59,7 +59,8 @@ export class MessagingService {
 
   buildNotification(msg: any) {
     this.notify.primary(msg.notification.body, msg.notification.title, {
-      position: NbGlobalPhysicalPosition.BOTTOM_LEFT
+      position: NbGlobalPhysicalPosition.BOTTOM_LEFT,
+      duration: 3000
     });
   }
 }
