@@ -1,4 +1,4 @@
-<nb-card>
+<nb-card class="flag-card">
   <nb-card-header>
     Report a problem
   </nb-card-header>
@@ -21,7 +21,7 @@
         <nb-checkbox formControlName="other">Other</nb-checkbox>
       </div>
       <br>
-      <textarea nbInput rows="3" formControlName="comment" placeholder="Enter your comment here..."></textarea>
+      <textarea style="width: 100%;" nbInput rows="3" formControlName="comment" placeholder="Enter your comment here..."></textarea>
       <br>
       <button nbButton status="info" type="submit" [disabled]="flagForm.invalid">Send</button>
     </form>

@@ -6,16 +6,16 @@
     {{post.meta.hearts || 0}}
   </nb-action>
   <nb-action>
-    <nb-icon [icon]="actionState.down ? 'arrow-circle-down' : 'arrow-circle-down-outline'"
-             [status]="actionState.down ? 'warning' : 'basic'"
-             (click)="toggleDown($event)" class="clickable"></nb-icon>
-    {{post.meta.downs || 0}}
-  </nb-action>
-  <nb-action>
     <nb-icon [icon]="actionState.up ? 'arrow-circle-up' : 'arrow-circle-up-outline'"
              [status]="actionState.up ? 'success' : 'basic'"
              (click)="toggleUp($event)" class="clickable"></nb-icon>
     {{post.meta.ups || 0}}
+  </nb-action>
+  <nb-action>
+    <nb-icon [icon]="actionState.down ? 'arrow-circle-down' : 'arrow-circle-down-outline'"
+             [status]="actionState.down ? 'warning' : 'basic'"
+             (click)="toggleDown($event)" class="clickable"></nb-icon>
+    {{post.meta.downs || 0}}
   </nb-action>
   <nb-action *ngIf="!isComment">
     <button nbButton status="basic" (click)="commentPost()" class="clickable">
