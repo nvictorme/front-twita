@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {Post} from '../../models/interfaces';
 import {DbService} from '../../services/db.service';
+import {MessagingService} from '../../services/messaging.service';
 
 @Component({
   selector: 'app-recent',
@@ -14,7 +15,8 @@ export class RecentComponent implements OnInit, OnDestroy {
   posts: Post[] = [];
   loading = true;
 
-  constructor(private dbs: DbService) {
+  constructor(private dbs: DbService,
+              private msgs: MessagingService) {
   }
 
   ngOnInit(): void {
@@ -22,6 +24,9 @@ export class RecentComponent implements OnInit, OnDestroy {
       .subscribe((posts: Post[]) => {
         this.setPosts(posts);
       });
+    this.msgs.getPermission();
+    this.msgs.monitorTokenRefresh();
+    this.msgs.receiveMessages();
   }
 
   setPosts(posts: Post[]) {
