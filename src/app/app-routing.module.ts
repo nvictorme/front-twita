@@ -13,15 +13,19 @@ import {TagPageComponent} from './pages/tag-page/tag-page.component';
 
 const redirectLoggedInToFeed = () => redirectLoggedInTo(['recent']);
 const redirectUnauthorizedToHome = () => redirectUnauthorizedTo(['']);
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const isAdmin = () => pipe(customClaims, map(claims => claims.roles.admin));
 const isEditor = () => pipe(customClaims, map(claims => claims.roles.editor));
 
 const routes: Routes = [
   {
     path: '',
-    component: LoginComponent,
-    canActivate: [AngularFireAuthGuard],
-    data: {authGuardPipe: redirectLoggedInToFeed}
+    redirectTo: 'recent',
+    pathMatch: 'prefix'
+  },
+  {
+    path: 'recent',
+    component: RecentComponent,
   },
   {
     path: 'login',
@@ -30,34 +34,24 @@ const routes: Routes = [
     data: {authGuardPipe: redirectLoggedInToFeed}
   },
   {
-    path: 'recent',
-    component: RecentComponent,
-    canActivate: [AngularFireAuthGuard],
-    data: {authGuardPipe: redirectUnauthorizedToHome}
-  },
-  {
     path: 'post/:postId',
-    component: SinglePostComponent,
-    canActivate: [AngularFireAuthGuard],
-    data: {authGuardPipe: redirectUnauthorizedToHome}
+    component: SinglePostComponent
   },
   {
     path: 'tag/:tag',
-    component: TagPageComponent,
-    canActivate: [AngularFireAuthGuard],
-    data: {authGuardPipe: redirectUnauthorizedToHome}
+    component: TagPageComponent
   },
   {
     path: 'profile/:userId',
     component: UserProfilePageComponent,
     canActivate: [AngularFireAuthGuard],
-    data: {authGuardPipe: redirectUnauthorizedToHome}
+    data: {authGuardPipe: redirectUnauthorizedToLogin}
   },
   {
     path: 'my-profile',
     component: MyProfileComponent,
     canActivate: [AngularFireAuthGuard],
-    data: {authGuardPipe: redirectUnauthorizedToHome}
+    data: {authGuardPipe: redirectUnauthorizedToLogin}
   }
 ];
 

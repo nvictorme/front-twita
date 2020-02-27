@@ -1,5 +1,12 @@
-<button nbButton shape="rectangle"
+<button nbButton shape="rectangle" *ngIf="user | async; else pleaseLogin"
         size="large" status="primary" (click)="openTwitaDialog()">
   <nb-icon icon="plus-square-outline"></nb-icon>
   {{isComment ? 'Comment' : 'Publish'}}
 </button>
+<ng-template #pleaseLogin>
+  <button nbButton shape="rectangle" outline
+          size="large" status="primary" routerLink="/login">
+    <nb-icon icon="unlock-outline" status="primary"></nb-icon>
+    Login
+  </button>
+</ng-template>
