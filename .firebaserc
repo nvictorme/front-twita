@@ -6,9 +6,17 @@
           "twita-dev"
         ]
       }
+    },
+    "twita-network": {
+      "hosting": {
+        "front-twita": [
+          "twita-network"
+        ]
+      }
     }
   },
   "projects": {
-    "dev": "twita-dev"
+    "dev": "twita-dev",
+    "prod": "twita-network"
   }
 }
