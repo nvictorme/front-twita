@@ -2,7 +2,6 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Post} from '../../models/interfaces';
 import {DbService} from '../../services/db.service';
 import {ActivatedRoute} from '@angular/router';
-import {formatFireDate} from '../../helpers';
 import {Subscription} from 'rxjs';
 import {FavoriteService} from '../../services/favorite.service';
 
@@ -10,15 +9,12 @@ import {FavoriteService} from '../../services/favorite.service';
   selector: 'app-single-post',
   templateUrl: './single-post.component.html',
   styleUrls: ['./single-post.component.scss']
-  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SinglePostComponent implements OnInit, OnDestroy {
 
   post: Post;
   commentsSub: Subscription;
   comments: Post[] = [];
-
-  // @ViewChild('replyBox', {static: false}) replyBox;
 
   constructor(private dbs: DbService,
               private favs: FavoriteService,

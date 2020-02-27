@@ -5,7 +5,7 @@ import {
   NbAccordionModule,
   NbActionsModule, NbAlertModule,
   NbButtonModule,
-  NbCardModule, NbDialogModule, NbDialogRef, NbDialogService,
+  NbCardModule,
   NbIconModule,
   NbLayoutModule,
   NbListModule,
