@@ -27,7 +27,7 @@
     "@nebular/theme": "^4.6.0",
     "angular-gauge-chart": "^0.7.2",
     "eva-icons": "^1.1.2",
-    "firebase": ">= 5.5.7 <8",
+    "firebase": ">= 5.5.7 <11",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "ngx-chips": "^2.1.0",
